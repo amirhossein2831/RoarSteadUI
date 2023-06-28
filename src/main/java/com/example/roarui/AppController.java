@@ -61,7 +61,11 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
        initialLogOutButton();
-       
+        profImage.setClip(new javafx.scene.shape.Circle(35, 33, 30));
+        forYouBut.fireEvent(syntheticMouseEvent);
+        scrollBar.setOnScroll(this::scrollDownUp);
+        logOut.setOnAction(this::logOut);
+        addAccount.setOnAction(event -> {});
     }
 
     private void initialLogOutButton() {
@@ -70,14 +74,6 @@ public class AppController implements Initializable {
         addAccount = new Button("add an existing account");
         addAccount.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-cursor: hand");
     }
-
-    private void logOut(ActionEvent event) {
-        WARNING_ALERT.handleCustomButtonAction();
-        if (WARNING_ALERT.isYes()) {
-            goTo(event, "login", "Login",600,450);
-        }
-    }
-
     @FXML
     private void openLogPage(MouseEvent event) {
         VBox vBox = new VBox();
@@ -102,5 +98,27 @@ public class AppController implements Initializable {
         AnchorPane.setRightAnchor(vBox, 5.0);
         isOpen = true;
     }//open and close a page to log out and go to existing account
+
+
+    private void logOut(ActionEvent event) {
+        WARNING_ALERT.handleCustomButtonAction();
+        if (WARNING_ALERT.isYes()) {
+            goTo(event, "login", "Login",600,450);
+        }
+    }
+
+       //go to For you part
+
+    private void switchVbox(VBox oldVbox, VBox newVbox) {
+        if (containsVBox(anchorPane)) {
+            anchorPane.getChildren().remove(oldVbox);
+        }
+        anchorPane.getChildren().add(newVbox);
+        AnchorPane.setTopAnchor(newVbox, 2.0);
+        AnchorPane.setLeftAnchor(newVbox, 20.0);
+        AnchorPane.setBottomAnchor(newVbox, 20.0);
+        AnchorPane.setRightAnchor(newVbox, 20.0);
+    }
+
 
 }
