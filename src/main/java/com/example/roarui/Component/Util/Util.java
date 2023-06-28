@@ -19,7 +19,6 @@ public class Util {
     public static final String PRIVACY_LINK = "http://localhost:63342/Login/com/login/Privacy.html?_ijt=384tffke4ep5ncnnn3ru2hudqg&_ij_reload=RELOAD_ON_SAVE";
     public static final String TERM_LINK = "http://localhost:63342/Login/com/login/Term.html?_ijt=369bt7l5cef9tmgatlsh85u3cv&_ij_reload=RELOAD_ON_SAVE";
 
-
     public static void goTo(ActionEvent event, String path, String title) {
         Parent root = null;
         FXMLLoader load = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
@@ -35,7 +34,30 @@ public class Util {
         stage.centerOnScreen();
         stage.show();
     }
-    
+
+
+    public static void goTo(ActionEvent event, String path, String title, int width, int height) {
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, width, height));
+        stage.setTitle(title);
+
+        // Retrieve the current stage
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(currentStage.isResizable());
+        stage.setFullScreen(currentStage.isFullScreen());
+        stage.setFullScreenExitHint(currentStage.getFullScreenExitHint());
+        stage.setFullScreenExitKeyCombination(currentStage.getFullScreenExitKeyCombination());
+        stage.setOpacity(currentStage.getOpacity());
+        currentStage.close();
+        stage.show();
+    }
 
     public static void openLink(String url) {
         try {
