@@ -3,7 +3,6 @@ package com.example.roarui.Component.Util;
 import com.example.roarui.Component.Alert.Alert;
 import com.example.roarui.Login;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -17,11 +16,11 @@ import java.io.IOException;
 
 public class Util {
     public static final String PRIVACY_LINK = "http://localhost:63342/Login/com/login/Privacy.html?_ijt=384tffke4ep5ncnnn3ru2hudqg&_ij_reload=RELOAD_ON_SAVE";
+
     public static final String TERM_LINK = "http://localhost:63342/Login/com/login/Term.html?_ijt=369bt7l5cef9tmgatlsh85u3cv&_ij_reload=RELOAD_ON_SAVE";
+
     public static final MouseEvent syntheticMouseEvent = new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0,
             null, 0, false, false, false, false, false, false, false, false, false, false, null);
-
-   
 
     public static void goTo(ActionEvent event, String path, String title) {
         Parent root = null;
@@ -38,7 +37,6 @@ public class Util {
         stage.centerOnScreen();
         stage.show();
     }
-
 
     public static boolean containsVBox(AnchorPane anchorPane) {
         for (javafx.scene.Node node : anchorPane.getChildren()) {
@@ -60,14 +58,14 @@ public class Util {
         Stage stage = new Stage();
         stage.setScene(new Scene(root, width, height));
         stage.setTitle(title);
-
-        // Retrieve the current stage
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         stage.setResizable(currentStage.isResizable());
         stage.setFullScreen(currentStage.isFullScreen());
         stage.setFullScreenExitHint(currentStage.getFullScreenExitHint());
         stage.setFullScreenExitKeyCombination(currentStage.getFullScreenExitKeyCombination());
         stage.setOpacity(currentStage.getOpacity());
+
         currentStage.close();
         stage.show();
     }
@@ -79,6 +77,7 @@ public class Util {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.close();
     }
+
     public static void openLink(String url) {
         try {
             String browserPath = System.getProperty("os.name").toLowerCase().contains("win") ? "cmd /c start" : "xdg-open";
@@ -87,6 +86,4 @@ public class Util {
             e.printStackTrace();
         }
     }
-
-
 }
