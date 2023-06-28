@@ -77,7 +77,7 @@
                   <Font name="Mandali" size="30.0" />
                </font>
             </Label>
-            <Button fx:id="exitBut" layoutX="202.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="30.0" prefWidth="197.0" style="-fx-background-radius: 15px; -fx-background-color: FFB705;" stylesheets="@../Css/Button.css" text="Exit">
+            <Button fx:id="exitBut" layoutX="202.0" layoutY="209.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="197.0" style="-fx-background-radius: 15px; -fx-background-color: FFB705;" stylesheets="@../Css/Button.css" text="Exit">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
