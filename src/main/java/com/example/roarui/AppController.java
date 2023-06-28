@@ -108,6 +108,17 @@ public class AppController implements Initializable {
     }
 
 
+    private void switchVbox(VBox oldVbox, VBox newVbox) {
+        if (containsVBox(anchorPane)) {
+            anchorPane.getChildren().remove(oldVbox);
+        }
+        anchorPane.getChildren().add(newVbox);
+        AnchorPane.setTopAnchor(newVbox, 2.0);
+        AnchorPane.setLeftAnchor(newVbox, 20.0);
+        AnchorPane.setBottomAnchor(newVbox, 20.0);
+        AnchorPane.setRightAnchor(newVbox, 20.0);
+    }
+
     @FXML
     void followingOnClick(MouseEvent event) {
         if (followingPane == null) {
@@ -133,17 +144,16 @@ public class AppController implements Initializable {
         followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
         isForYou = true;
     }       //go to For you part
-
-    private void switchVbox(VBox oldVbox, VBox newVbox) {
-        if (containsVBox(anchorPane)) {
-            anchorPane.getChildren().remove(oldVbox);
-        }
-        anchorPane.getChildren().add(newVbox);
-        AnchorPane.setTopAnchor(newVbox, 2.0);
-        AnchorPane.setLeftAnchor(newVbox, 20.0);
-        AnchorPane.setBottomAnchor(newVbox, 20.0);
-        AnchorPane.setRightAnchor(newVbox, 20.0);
-    }
+    private void scrollDownUp(ScrollEvent event) {
+        scrollBar.setValue(scrollBar.getValue() + event.getDeltaX());
+        scrollBar.valueProperty().addListener((observable, oldValue, newValue) ->
+                {   if (isForYou)
+                    forYouPane.setLayoutX(-newValue.doubleValue());
+                else
+                    followingPane.setLayoutX(-newValue.doubleValue());
+                }
+        );
+    }       //use to connect the scroll to vbox in forYou and following
 
 
 }
