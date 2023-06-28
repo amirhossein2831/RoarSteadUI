@@ -107,7 +107,32 @@ public class AppController implements Initializable {
         }
     }
 
-       //go to For you part
+
+    @FXML
+    void followingOnClick(MouseEvent event) {
+        if (followingPane == null) {
+            followingPane = new VBox();
+            followingPane.setSpacing(10);
+        }
+        followingPane.setStyle("-fx-background-color: red;");
+        switchVbox(forYouPane,followingPane);
+        followingBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
+        forYouBut.setStyle("-fx-underline: false;-fx-background-color: black");
+        isForYou = false;
+    }       // go to following part
+
+    @FXML
+    void forYouOnClick(MouseEvent event) {
+        if (forYouPane == null) {
+            forYouPane = new VBox();
+            forYouPane.setSpacing(10);
+        }
+        forYouPane.setStyle("-fx-background-color: green;");
+        switchVbox(followingPane, forYouPane);
+        forYouBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
+        followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
+        isForYou = true;
+    }       //go to For you part
 
     private void switchVbox(VBox oldVbox, VBox newVbox) {
         if (containsVBox(anchorPane)) {
