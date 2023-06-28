@@ -59,6 +59,13 @@ public class Util {
         stage.show();
     }
 
+    public static void handleCloseButton(ActionEvent event) {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+    } public static void handleCloseButton(MouseEvent event) {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+    }
     public static void openLink(String url) {
         try {
             String browserPath = System.getProperty("os.name").toLowerCase().contains("win") ? "cmd /c start" : "xdg-open";
