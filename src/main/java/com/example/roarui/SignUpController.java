@@ -1,5 +1,6 @@
 package com.example.roarui;
 
+import com.example.roarui.Component.Util.Util;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -8,7 +9,8 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import static com.example.roarui.Component.Util.Util.goTo;
+
+import static com.example.roarui.Component.Util.Util.*;
 
 public class SignUpController implements Initializable {
     @FXML
@@ -46,5 +48,10 @@ public class SignUpController implements Initializable {
 
     @FXML
     private CheckBox wantNews_CB;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        login_button.setOnAction(event -> goTo(event, "login", "Login"));
+    }
 
 }
