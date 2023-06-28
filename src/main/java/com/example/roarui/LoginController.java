@@ -1,5 +1,6 @@
 package com.example.roarui;
 
+import com.example.roarui.Component.Util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +23,9 @@ public class LoginController implements Initializable {
     private Button sighUp_Button;
 
     @FXML
+    private Button exitBut;
+
+    @FXML
     private TextField password_TF;
 
     @FXML
@@ -30,8 +34,7 @@ public class LoginController implements Initializable {
     @Override
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        sighUp_Button.setOnAction(event -> goTo(event,"signUp", "SignUp"));
+        exitBut.setOnAction(Util::handleCloseButton);
     }
-
-
-
 }
