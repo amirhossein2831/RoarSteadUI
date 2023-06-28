@@ -55,12 +55,4 @@ public class SignUpController implements Initializable {
         term_button.setOnAction(event -> openLink(TERM_LINK));
         privacy_button.setOnAction(event -> openLink(PRIVACY_LINK));
     }
-    private void openLink(String url) {
-        try {
-            String browserPath = System.getProperty("os.name").toLowerCase().contains("win") ? "cmd /c start" : "xdg-open";
-            Runtime.getRuntime().exec(browserPath + " " + url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
