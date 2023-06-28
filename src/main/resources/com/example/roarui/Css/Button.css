@@ -1,0 +1,109 @@
+#login_Button:hover{
+    -fx-background-color:#FFF405 !important;
+    -fx-font-weight:bold;
+}#exitBut:hover{
+    -fx-background-color:#FFF405 !important;
+    -fx-font-weight:bold;
+}
+#sighUp_Button:hover{
+    -fx-text-fill:#FFF405;
+    -fx-font-style:italic;
+}
+#login_button:hover {
+    -fx-font-style:italic;
+    -fx-text-fill:#FFF405;
+}
+#term_button:hover {
+    -fx-text-fill:#FFF405;
+    -fx-font-style:italic;
+}
+#privacy_button:hover {
+    -fx-text-fill:#FFF405;
+    -fx-font-style:italic;
+}
+#create_button:hover {
+    -fx-background-color:#FFF405 !important;
+    -fx-font-weight:bold;
+}
+.message {
+    -fx-background-image: url('../image/105r.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+.bell{
+    -fx-background-image: url('../image/104r.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+.home{
+    -fx-background-image: url('../image/101r.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+.search{
+    -fx-background-image: url('../image/103r.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+.prof{
+    -fx-background-image: url('../image/107r.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+.setting{
+    -fx-background-image: url('../image/108r.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+#RoarBut:hover{
+    -fx-background-color:#F1D017 !important;
+    -fx-font-size: 35px;
+    -fx-font-family: Mandali;
+    -fx-cursor: hand;
+}
+#homeBut:hover{
+    -fx-text-fill: #eee2ba !important;
+    -fx-font-size: 22px;
+}
+
+#exploreBut:hover {
+    -fx-text-fill: #eee2ba !important;
+    -fx-font-size: 22px;
+}
+#notifBut:hover{
+    -fx-text-fill: #eee2ba !important;
+    -fx-font-size: 22px;
+}
+#messageBut:hover{
+    -fx-text-fill: #eee2ba !important;
+    -fx-font-size: 22px;
+}
+#porfileBut:hover {
+    -fx-text-fill: #eee2ba !important;
+    -fx-font-size: 22px;
+}
+#settingBut:hover{
+    -fx-text-fill: #eee2ba !important;
+    -fx-font-size: 22px;
+}
+#forYouBut:hover {
+    -fx-text-fill: #eee2ba !important;
+    -fx-font-size: 18px;
+    -fx-background-color: #111111 !important;
+
+}
+#followingBut:hover {
+    -fx-text-fill: #eee2ba !important;
+    -fx-font-size: 18px;
+    -fx-background-color: #111111 !important;
+}
+
+
+
+
