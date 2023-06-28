@@ -1,17 +1,13 @@
 package com.example.roarui;
 
 import com.example.roarui.Component.Util.Util;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import static com.example.roarui.Component.Util.Util.goTo;
-import static com.example.roarui.Component.Util.Util.handleCloseButton;
 
 public class LoginController implements Initializable {
 
