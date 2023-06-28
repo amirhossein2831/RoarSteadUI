@@ -1,31 +1,20 @@
 package com.example.roarui;
 
-import com.example.roarui.Component.Alert.Alert;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import static com.example.roarui.Component.Util.Util.*;
 
 public class AppController implements Initializable {
-
-
 
     @FXML
     private AnchorPane anchorPane;
@@ -44,7 +33,9 @@ public class AppController implements Initializable {
 
     @FXML
     private ImageView profImage;
+
     private boolean isForYou;
+
     @FXML
     private AnchorPane logPage;
 
@@ -74,6 +65,7 @@ public class AppController implements Initializable {
         addAccount = new Button("add an existing account");
         addAccount.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-cursor: hand");
     }
+
     @FXML
     private void openLogPage(MouseEvent event) {
         VBox vBox = new VBox();
@@ -99,24 +91,11 @@ public class AppController implements Initializable {
         isOpen = true;
     }//open and close a page to log out and go to existing account
 
-
     private void logOut(ActionEvent event) {
         WARNING_ALERT.handleCustomButtonAction();
         if (WARNING_ALERT.isYes()) {
             goTo(event, "login", "Login",600,450);
         }
-    }
-
-
-    private void switchVbox(VBox oldVbox, VBox newVbox) {
-        if (containsVBox(anchorPane)) {
-            anchorPane.getChildren().remove(oldVbox);
-        }
-        anchorPane.getChildren().add(newVbox);
-        AnchorPane.setTopAnchor(newVbox, 2.0);
-        AnchorPane.setLeftAnchor(newVbox, 20.0);
-        AnchorPane.setBottomAnchor(newVbox, 20.0);
-        AnchorPane.setRightAnchor(newVbox, 20.0);
     }
 
     @FXML
@@ -132,6 +111,17 @@ public class AppController implements Initializable {
         isForYou = false;
     }       // go to following part
 
+    private void switchVbox(VBox oldVbox, VBox newVbox) {
+        if (containsVBox(anchorPane)) {
+            anchorPane.getChildren().remove(oldVbox);
+        }
+        anchorPane.getChildren().add(newVbox);
+        AnchorPane.setTopAnchor(newVbox, 2.0);
+        AnchorPane.setLeftAnchor(newVbox, 20.0);
+        AnchorPane.setBottomAnchor(newVbox, 20.0);
+        AnchorPane.setRightAnchor(newVbox, 20.0);
+    }
+
     @FXML
     void forYouOnClick(MouseEvent event) {
         if (forYouPane == null) {
@@ -144,6 +134,7 @@ public class AppController implements Initializable {
         followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
         isForYou = true;
     }       //go to For you part
+
     private void scrollDownUp(ScrollEvent event) {
         scrollBar.setValue(scrollBar.getValue() + event.getDeltaX());
         scrollBar.valueProperty().addListener((observable, oldValue, newValue) ->
@@ -154,6 +145,4 @@ public class AppController implements Initializable {
                 }
         );
     }       //use to connect the scroll to vbox in forYou and following
-
-
 }
