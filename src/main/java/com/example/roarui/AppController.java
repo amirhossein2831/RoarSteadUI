@@ -61,7 +61,6 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
        initialLogOutButton();
-       
     }
 
     private void initialLogOutButton() {
@@ -71,5 +70,31 @@ public class AppController implements Initializable {
         addAccount.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-cursor: hand");
     }
 
+
+
+    @FXML
+    private void openLogPage(MouseEvent event) {
+        VBox vBox = new VBox();
+        vBox.setSpacing(10);
+        vBox.getChildren().add(addAccount);
+        vBox.getChildren().add(logOut);
+        if (isOpen) {
+            isOpen = false;
+            logPane.getChildren().remove(logPage);
+            return;
+        }
+        logPage = new AnchorPane();
+        logPage.setStyle("-fx-background-color: black;-fx-background-radius: 20px;");
+        logPage.setLayoutX(335);
+        logPage.setLayoutY(880);
+        logPage.getChildren().add(vBox);
+        logPane.getChildren().add(logPage);
+
+        AnchorPane.setTopAnchor(vBox, 5.0);
+        AnchorPane.setLeftAnchor(vBox, 5.0);
+        AnchorPane.setBottomAnchor(vBox, 5.0);
+        AnchorPane.setRightAnchor(vBox, 5.0);
+        isOpen = true;
+    }//open and close a page to log out and go to existing account
 
 }
