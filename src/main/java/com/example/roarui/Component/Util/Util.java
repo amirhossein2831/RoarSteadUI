@@ -19,6 +19,24 @@ public class Util {
     public static final String PRIVACY_LINK = "http://localhost:63342/Login/com/login/Privacy.html?_ijt=384tffke4ep5ncnnn3ru2hudqg&_ij_reload=RELOAD_ON_SAVE";
     public static final String TERM_LINK = "http://localhost:63342/Login/com/login/Term.html?_ijt=369bt7l5cef9tmgatlsh85u3cv&_ij_reload=RELOAD_ON_SAVE";
 
+
+    public static void goTo(ActionEvent event, String path, String title) {
+        Parent root = null;
+        FXMLLoader load = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
+        try {
+            root = load.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setFullScreen(false);
+        stage.setScene(new Scene(root,600,450));
+        stage.setTitle(title);
+        stage.centerOnScreen();
+        stage.show();
+    }
+    
+
     public static void openLink(String url) {
         try {
             String browserPath = System.getProperty("os.name").toLowerCase().contains("win") ? "cmd /c start" : "xdg-open";
