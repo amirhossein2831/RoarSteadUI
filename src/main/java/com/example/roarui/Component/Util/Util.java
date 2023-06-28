@@ -22,6 +22,8 @@ public class Util {
     public static final MouseEvent syntheticMouseEvent = new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0,
             null, 0, false, false, false, false, false, false, false, false, false, false, null);
 
+    public static final Alert WARNING_ALERT = warningAlert();
+
     public static void goTo(ActionEvent event, String path, String title) {
         Parent root = null;
         FXMLLoader load = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
@@ -68,6 +70,14 @@ public class Util {
 
         currentStage.close();
         stage.show();
+    }
+
+    public static Alert warningAlert() {
+        Alert alert = new Alert(javafx.scene.control.Alert.AlertType.WARNING, "Are you sure",
+                ButtonType.YES, ButtonType.CLOSE);
+        alert.setHeaderText("Are you sure to LOG OUT?");
+        alert.setContentText("you can always back to your account !");
+        return alert;
     }
 
     public static void handleCloseButton(ActionEvent event) {
