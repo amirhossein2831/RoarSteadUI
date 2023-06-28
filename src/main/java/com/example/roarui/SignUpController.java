@@ -53,5 +53,12 @@ public class SignUpController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         login_button.setOnAction(event -> goTo(event, "login", "Login"));
     }
-
+    private void openLink(String url) {
+        try {
+            String browserPath = System.getProperty("os.name").toLowerCase().contains("win") ? "cmd /c start" : "xdg-open";
+            Runtime.getRuntime().exec(browserPath + " " + url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
