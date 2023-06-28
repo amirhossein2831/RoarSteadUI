@@ -52,6 +52,8 @@ public class SignUpController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         login_button.setOnAction(event -> goTo(event, "login", "Login"));
+        term_button.setOnAction(event -> openLink(TERM_LINK));
+        privacy_button.setOnAction(event -> openLink(PRIVACY_LINK));
     }
     private void openLink(String url) {
         try {
