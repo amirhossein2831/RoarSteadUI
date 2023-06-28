@@ -36,6 +36,15 @@ public class Util {
     }
 
 
+    public static boolean containsVBox(AnchorPane anchorPane) {
+        for (javafx.scene.Node node : anchorPane.getChildren()) {
+            if (node instanceof VBox) {
+                return true;
+            }
+        }
+        return false;
+    } //method that anchor pane has any child or not
+
     public static void goTo(ActionEvent event, String path, String title, int width, int height) {
         Parent root = null;
         FXMLLoader loader = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
