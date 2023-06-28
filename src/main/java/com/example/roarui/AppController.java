@@ -58,4 +58,18 @@ public class AppController implements Initializable {
 
     private Button logOut;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+       initialLogOutButton();
+       
+    }
+
+    private void initialLogOutButton() {
+        logOut = new Button("Log Out");
+        logOut.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-cursor: hand");
+        addAccount = new Button("add an existing account");
+        addAccount.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-cursor: hand");
+    }
+
+
 }
