@@ -61,6 +61,7 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
        initialLogOutButton();
+       
     }
 
     private void initialLogOutButton() {
@@ -70,7 +71,12 @@ public class AppController implements Initializable {
         addAccount.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-cursor: hand");
     }
 
-
+    private void logOut(ActionEvent event) {
+        WARNING_ALERT.handleCustomButtonAction();
+        if (WARNING_ALERT.isYes()) {
+            goTo(event, "login", "Login",600,450);
+        }
+    }
 
     @FXML
     private void openLogPage(MouseEvent event) {
