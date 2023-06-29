@@ -20,6 +20,9 @@ public class AppController implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
+    protected Button homeBut;
+
+    @FXML
     protected AnchorPane logPane;
 
     @FXML
