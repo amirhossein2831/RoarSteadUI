@@ -205,38 +205,49 @@
                               <Cursor fx:constant="NONE" />
                            </cursor>
                         </TextArea>
-                        <Label layoutX="20.0" layoutY="142.0" text="Joined Time" textFill="#756c6c">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="RoarBut" layoutX="64.0" layoutY="173.0" text="Roar" textFill="WHITE">
+                        <Button fx:id="roarBut" layoutX="51.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#roarAction" style="-fx-background-color: black;" text="Roar" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
-                        </Label>
-                        <Label fx:id="RepliesBut" layoutX="180.0" layoutY="173.0" text="Replies" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="repliesBut" layoutX="169.0" layoutY="167.0" mnemonicParsing="false" onMouseClicked="#repliesAction" style="-fx-background-color: black;" text="Replies" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
-                        </Label>
-                        <Label fx:id="MediaBut" layoutX="486.0" layoutY="173.0" text="Media" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="likesBut" layoutX="609.0" layoutY="167.0" mnemonicParsing="false" onMouseClicked="#likesAction" style="-fx-background-color: black;" text="Likes" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
-                        </Label>
-                        <Label fx:id="HighlightBut" layoutX="327.0" layoutY="173.0" text="Highlight" textFill="WHITE" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="mediaBut" layoutX="475.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#mediaAction" style="-fx-background-color: black;" text="Media" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
-                        </Label>
-                        <Label fx:id="LikesBut" layoutX="620.0" layoutY="173.0" text="Likes" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="highlightBut" layoutX="316.0" layoutY="167.0" mnemonicParsing="false" onMouseClicked="#highlightAction" style="-fx-background-color: black;" text="Highlight" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
-                        </Label>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                      </children>
                   </AnchorPane>
+                  <AnchorPane fx:id="optionPane" layoutX="10.0" layoutY="599.0" prefHeight="493.0" prefWidth="721.0" />
                </children>
             </VBox>
          </children></AnchorPane>
