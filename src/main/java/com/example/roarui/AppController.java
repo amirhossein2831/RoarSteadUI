@@ -34,6 +34,12 @@ public class AppController implements Initializable {
     @FXML
     private ImageView profImage;
 
+    @FXML
+    private Button profileBut;
+
+    @FXML
+    private Button profileImageBut;
+
     private boolean isForYou;
 
     @FXML
@@ -51,7 +57,9 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       initialLogOutButton();
+        initialLogOutButton();
+        profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
+        profileImageBut.setOnAction(event -> goTo(event,"profile","Profile"));
         profImage.setClip(new javafx.scene.shape.Circle(35, 33, 30));
         forYouBut.fireEvent(syntheticMouseEvent);
         scrollBar.setOnScroll(this::scrollDownUp);
