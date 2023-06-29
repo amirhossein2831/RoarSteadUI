@@ -108,6 +108,16 @@
     -fx-fond-size: 15px;
     -fx-background-color: #001111 !important;
 }
+#following:hover {
+    -fx-font-weight: bold;
+    -fx-fond-size: 15px;
+    -fx-background-color: #001111 !important;
+}
+#followers:hover {
+    -fx-font-weight: bold;
+    -fx-fond-size: 15px;
+    -fx-background-color: #001111 !important;
+}
 
 
 
