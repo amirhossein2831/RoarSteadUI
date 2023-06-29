@@ -84,7 +84,7 @@
     -fx-text-fill: #eee2ba !important;
     -fx-font-size: 22px;
 }
-#porfileBut:hover {
+#profileBut:hover {
     -fx-text-fill: #eee2ba !important;
     -fx-font-size: 22px;
 }
@@ -102,6 +102,21 @@
     -fx-text-fill: #eee2ba !important;
     -fx-font-size: 18px;
     -fx-background-color: #111111 !important;
+}
+#editProfBut:hover {
+    -fx-font-weight: bold;
+    -fx-fond-size: 15px;
+    -fx-background-color: #001111 !important;
+}
+#following:hover {
+    -fx-font-weight: bold;
+    -fx-fond-size: 15px;
+    -fx-background-color: #001111 !important;
+}
+#followers:hover {
+    -fx-font-weight: bold;
+    -fx-fond-size: 15px;
+    -fx-background-color: #001111 !important;
 }
 
 
