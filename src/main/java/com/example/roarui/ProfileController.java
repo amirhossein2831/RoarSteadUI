@@ -8,10 +8,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import static com.example.roarui.Component.Util.Util.goTo;
 import static com.example.roarui.Component.Util.Util.openLink;
 
@@ -27,30 +25,30 @@ public class ProfileController extends AppController {
 
     @FXML
     private Button roarBut;
+
     private VBox roarBox;
-    private boolean isRoarBoxOpen;
 
 
     @FXML
     private Button repliesBut;
+
     private VBox repliesBox;
-    private boolean isRepliesBoxOpen;
 
 
     @FXML
     private Button highlightBut;
+
     private VBox highlightBox;
-    private boolean isHighlightBoxOpen;
 
     @FXML
     private Button mediaBut;
+
     private VBox mediaBox;
-    private boolean isMediaBoxOpen;
 
     @FXML
     private Button likesBut;
+
     private VBox likesBox;
-    private boolean isLikeBOxOpen;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -149,24 +147,18 @@ public class ProfileController extends AppController {
     private void showBox(MouseEvent event,VBox vbox) {
         if (repliesBox != null) {
             repliesBox.setVisible(false);
-        }
-        if (likesBox != null) {
+        }if (likesBox != null) {
             likesBox.setVisible(false);
-        }
-        if (highlightBox != null) {
+        }if (highlightBox != null) {
             highlightBox.setVisible(false);
-        }
-        if (mediaBox != null) {
+        }if (mediaBox != null) {
             mediaBox.setVisible(false);
-        }
-        if (repliesBox != null) {
+        }if (repliesBox != null) {
             roarBox.setVisible(false);
         }
 
-        // Show the selected VBox
         vbox.setVisible(true);
 
-        // Remove underline from all buttons
         roarBut.setStyle("-fx-background-color: black;-fx-underline: false");
         repliesBut.setStyle("-fx-background-color: black;-fx-underline: false");
         mediaBut.setStyle("-fx-background-color: black;-fx-underline: false");
@@ -176,6 +168,4 @@ public class ProfileController extends AppController {
         Button selectedButton = (Button) event.getSource();
         selectedButton.setStyle("-fx-background-color: black; -fx-underline: true;");
     }
-
-
 }
