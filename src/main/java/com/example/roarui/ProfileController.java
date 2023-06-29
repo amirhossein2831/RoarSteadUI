@@ -29,6 +29,7 @@ public class ProfileController extends AppController {
         logOutPageAction();
         createProfileCircle();
         homeBut.setOnAction(event -> goTo(event,"app","HOME"));
+        //TODO change the below link with the user link
         headerImageView.setOnMouseClicked(event-> openLink("/home/amirhossein/IdeaProjects/RoarUi/src/main/resources/com/example/roarui/image/istockphoto-178488809-612x612.jpg"));
         profImageView.setOnMouseClicked(event -> openLink("/home/amirhossein/IdeaProjects/RoarUi/src/main/resources/com/example/roarui/image/l4.png"));
     }
