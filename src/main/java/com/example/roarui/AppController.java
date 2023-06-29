@@ -20,7 +20,10 @@ public class AppController implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private AnchorPane logPane;
+    protected AnchorPane logPane;
+
+    @FXML
+    protected AnchorPane logAnchor;
 
     @FXML
     private Button followingBut;
@@ -32,7 +35,7 @@ public class AppController implements Initializable {
     private ScrollBar scrollBar;
 
     @FXML
-    private ImageView profImage;
+    protected ImageView profImage;
 
     @FXML
     private Button profileBut;
@@ -40,10 +43,10 @@ public class AppController implements Initializable {
     @FXML
     private Button profileImageBut;
 
-    private boolean isForYou;
-
     @FXML
-    private AnchorPane logPage;
+    protected AnchorPane logPage;
+
+    private boolean isForYou;
 
     private VBox forYouPane;
 
@@ -51,31 +54,35 @@ public class AppController implements Initializable {
 
     private boolean isOpen;
 
-    private Button addAccount;
+    protected Button addAccount;
 
-    private Button logOut;
+    protected Button logOut;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        initialLogOutButton();
+        logOutPageAction();
         profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
         profileImageBut.setOnAction(event -> goTo(event,"profile","Profile"));
-        profImage.setClip(new javafx.scene.shape.Circle(35, 33, 30));
         forYouBut.fireEvent(syntheticMouseEvent);
         scrollBar.setOnScroll(this::scrollDownUp);
-        logOut.setOnAction(this::logOut);
-        addAccount.setOnAction(event -> {});
     }
 
-    private void initialLogOutButton() {
+    protected void initialLogOutButton() {
         logOut = new Button("Log Out");
         logOut.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-cursor: hand");
         addAccount = new Button("add an existing account");
         addAccount.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-cursor: hand");
     }
 
-    @FXML
-    private void openLogPage(MouseEvent event) {
+    protected void logOutPageAction() {
+        initialLogOutButton();//
+        logOut.setOnAction(this::logOut);
+        profImage.setClip(new javafx.scene.shape.Circle(35, 33, 30));//
+        addAccount.setOnAction(event -> {});
+        logAnchor.setOnMouseClicked(this::openLogPage);
+    }
+
+    protected void openLogPage(MouseEvent event) {
         VBox vBox = new VBox();
         vBox.setSpacing(10);
         vBox.getChildren().add(addAccount);
@@ -99,7 +106,7 @@ public class AppController implements Initializable {
         isOpen = true;
     }//open and close a page to log out and go to existing account
 
-    private void logOut(ActionEvent event) {
+    protected void logOut(ActionEvent event) {
         WARNING_ALERT.handleCustomButtonAction();
         if (WARNING_ALERT.isYes()) {
             goTo(event, "login", "Login",600,450);
