@@ -45,7 +45,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="porfileBut" layoutX="360.0" layoutY="385.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="258.0" style="-fx-alignment: center-left; -fx-background-color: #232323;" stylesheets="@../Css/Button.css" text="Profile" textFill="WHITE">
+            <Button fx:id="profileBut" layoutX="360.0" layoutY="385.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="258.0" style="-fx-alignment: center-left; -fx-background-color: #232323;" stylesheets="@../Css/Button.css" text="Profile" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
