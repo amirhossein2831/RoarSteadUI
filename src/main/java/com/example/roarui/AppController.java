@@ -123,17 +123,17 @@ public class AppController implements Initializable {
             followingPane.setSpacing(10);
         }
         followingPane.setStyle("-fx-background-color: red;");
-        switchVbox(forYouPane,followingPane);
+        switchVbox(forYouPane,followingPane,anchorPane);
         followingBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
         forYouBut.setStyle("-fx-underline: false;-fx-background-color: black");
         isForYou = false;
     }       // go to following part
 
-    private void switchVbox(VBox oldVbox, VBox newVbox) {
-        if (containsVBox(anchorPane)) {
-            anchorPane.getChildren().remove(oldVbox);
+    protected void switchVbox(VBox oldVbox, VBox newVbox,AnchorPane pane) {
+        if (containsVBox(pane)) {
+            pane.getChildren().remove(oldVbox);
         }
-        anchorPane.getChildren().add(newVbox);
+        pane.getChildren().add(newVbox);
         AnchorPane.setTopAnchor(newVbox, 2.0);
         AnchorPane.setLeftAnchor(newVbox, 20.0);
         AnchorPane.setBottomAnchor(newVbox, 20.0);
@@ -147,7 +147,7 @@ public class AppController implements Initializable {
             forYouPane.setSpacing(10);
         }
         forYouPane.setStyle("-fx-background-color: green;");
-        switchVbox(followingPane, forYouPane);
+        switchVbox(followingPane, forYouPane,anchorPane);
         forYouBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
         followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
         isForYou = true;
