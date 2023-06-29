@@ -175,15 +175,15 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="editProfBut" layoutX="10.0" layoutY="153.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: black; -fx-background-radius: 15px; -fx-border-color: white; -fx-border-radius: 15px; -fx-border-image-width: .3;" stylesheets="@../Css/Button.css" text="Edit profile" textFill="WHITE">
+                        <Button fx:id="editProfBut" layoutX="180.0" layoutY="258.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: black; -fx-background-radius: 15px; -fx-border-color: white; -fx-border-radius: 15px; -fx-border-image-width: .3;" stylesheets="@../Css/Button.css" text="Edit profile" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
                         <Label layoutX="20.0" layoutY="1.0" prefHeight="26.0" prefWidth="382.0" text="profileName" textFill="#fcfcfc">
                            <font>
                               <Font size="20.0" />
@@ -194,7 +194,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="bioTextArea" editable="false" focusTraversable="false" layoutX="12.0" layoutY="50.0" prefHeight="95.0" prefWidth="707.0" promptText="The bio" styleClass="textArea" stylesheets="@../Css/TextArea.css" text="hello wrold&#10;s&#10;aldjfla&#10;s" wrapText="true">
+                        <TextArea fx:id="bioTextArea" editable="false" focusTraversable="false" layoutX="12.0" layoutY="50.0" prefHeight="85.0" prefWidth="707.0" promptText="The bio" styleClass="textArea" stylesheets="@../Css/TextArea.css" text="hello wrold&#10;s&#10;aldjfla&#10;s" wrapText="true">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -205,6 +205,36 @@
                               <Cursor fx:constant="NONE" />
                            </cursor>
                         </TextArea>
+                        <Label layoutX="20.0" layoutY="142.0" text="Joined Time" textFill="#756c6c">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="RoarBut" layoutX="64.0" layoutY="173.0" text="Roar" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="RepliesBut" layoutX="180.0" layoutY="173.0" text="Replies" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="MediaBut" layoutX="486.0" layoutY="173.0" text="Media" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="HighlightBut" layoutX="327.0" layoutY="173.0" text="Highlight" textFill="WHITE" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="LikesBut" layoutX="620.0" layoutY="173.0" text="Likes" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </children>
