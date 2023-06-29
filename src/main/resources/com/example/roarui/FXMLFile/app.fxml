@@ -112,7 +112,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <AnchorPane layoutX="319.0" layoutY="938.0" onMouseClicked="#openLogPage" prefHeight="95.0" prefWidth="247.0">
+            <AnchorPane fx:id="logAnchor" layoutX="319.0" layoutY="938.0" prefHeight="95.0" prefWidth="247.0">
                <children>
                   <ImageView fx:id="profImage" fitHeight="69.0" fitWidth="68.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                      <image>
