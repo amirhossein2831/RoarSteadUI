@@ -1,17 +1,26 @@
 package com.example.roarui;
 
+import com.example.roarui.Component.Util.Util;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.effect.Bloom;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import static com.example.roarui.Component.Util.Util.goTo;
-import static com.example.roarui.Component.Util.Util.openLink;
+
+import static com.example.roarui.Component.Util.Util.*;
 
 public class ProfileController extends AppController {
     @FXML
@@ -24,40 +33,52 @@ public class ProfileController extends AppController {
     private AnchorPane optionPane;
 
     @FXML
+    private AnchorPane middleAnchor;
+
+    @FXML
     private Button roarBut;
 
-    private VBox roarBox;
+    @FXML
+    private Button followers;
 
+    @FXML
+    private Button following;
+    private VBox roarBox;
 
     @FXML
     private Button repliesBut;
-
     private VBox repliesBox;
-
 
     @FXML
     private Button highlightBut;
-
     private VBox highlightBox;
 
     @FXML
     private Button mediaBut;
-
     private VBox mediaBox;
 
     @FXML
     private Button likesBut;
-
     private VBox likesBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initialUpperAnchor(middleAnchor);
         logOutPageAction();
         createProfileCircle();
         homeBut.setOnAction(event -> goTo(event, "app", "HOME"));
         //TODO change the below link with the user link
         headerImageView.setOnMouseClicked(event -> openLink("/home/amirhossein/IdeaProjects/RoarUi/src/main/resources/com/example/roarui/image/istockphoto-178488809-612x612.jpg"));
         profImageView.setOnMouseClicked(event -> openLink("/home/amirhossein/IdeaProjects/RoarUi/src/main/resources/com/example/roarui/image/l4.png"));
+        followers.setOnAction(event ->{
+            isFollowers = true;
+            goTo(event, "followPage", "Followers");
+        });
+        following.setOnAction(event -> {
+            isFollowers = false;
+            goTo(event, "followPage", "Following");
+        });
+        roarBut.fireEvent(syntheticMouseEvent);
     }
 
     private void createProfileCircle() {
@@ -144,6 +165,7 @@ public class ProfileController extends AppController {
         }
         showBox(event, roarBox);
     }
+
     private void showBox(MouseEvent event,VBox vbox) {
         if (repliesBox != null) {
             repliesBox.setVisible(false);
@@ -156,16 +178,22 @@ public class ProfileController extends AppController {
         }if (repliesBox != null) {
             roarBox.setVisible(false);
         }
-
         vbox.setVisible(true);
 
-        roarBut.setStyle("-fx-background-color: black;-fx-underline: false");
-        repliesBut.setStyle("-fx-background-color: black;-fx-underline: false");
-        mediaBut.setStyle("-fx-background-color: black;-fx-underline: false");
-        highlightBut.setStyle("-fx-background-color: black;-fx-underline: false");
-        likesBut.setStyle("-fx-background-color: black;-fx-underline: false");
+        roarBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        roarBut.setEffect(null);
+        repliesBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        repliesBut.setEffect(null);
+        mediaBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        mediaBut.setEffect(null);
+        highlightBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        highlightBut.setEffect(null);
+        likesBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        likesBut.setEffect(null);
+
 
         Button selectedButton = (Button) event.getSource();
-        selectedButton.setStyle("-fx-background-color: black; -fx-underline: true;");
+        selectedButton.setStyle("-fx-background-color: black;-fx-opacity: 1");
+        selectedButton.setEffect(new Bloom(.3));
     }
 }

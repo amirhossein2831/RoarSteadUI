@@ -5,11 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.effect.Bloom;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import static com.example.roarui.Component.Util.Util.*;
@@ -17,10 +19,13 @@ import static com.example.roarui.Component.Util.Util.*;
 public class AppController implements Initializable {
 
     @FXML
-    private AnchorPane anchorPane;
+    protected AnchorPane anchorPane;
 
     @FXML
     protected Button homeBut;
+
+    @FXML
+    protected AnchorPane upperAnchor;
 
     @FXML
     protected AnchorPane logPane;
@@ -32,16 +37,22 @@ public class AppController implements Initializable {
     private Button followingBut;
 
     @FXML
+    protected HBox parentHbox;
+
+    @FXML
     private Button forYouBut;
 
     @FXML
-    private ScrollBar scrollBar;
+    protected ScrollBar scrollBar;  //connect to followers and forYou Vbox
+
+    @FXML
+    protected ScrollBar scrollBarFollowing; //connect to following vbox
 
     @FXML
     protected ImageView profImage;
 
     @FXML
-    private Button profileBut;
+    protected Button profileBut;
 
     @FXML
     private Button profileImageBut;
@@ -49,11 +60,13 @@ public class AppController implements Initializable {
     @FXML
     protected AnchorPane logPage;
 
-    private boolean isForYou;
+    protected boolean isForYou;
 
-    private VBox forYouPane;
+    protected int x;
 
-    private VBox followingPane;
+    protected VBox forYouPane;
+
+    protected VBox followingPane;
 
     private boolean isOpen;
 
@@ -63,11 +76,13 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initialUpperAnchor(upperAnchor);
         logOutPageAction();
         profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
         profileImageBut.setOnAction(event -> goTo(event,"profile","Profile"));
         forYouBut.fireEvent(syntheticMouseEvent);
-        scrollBar.setOnScroll(this::scrollDownUp);
+        scrollFollowers();
+        scrollFollowing();
     }
 
     protected void initialLogOutButton() {
@@ -117,17 +132,50 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void followingOnClick(MouseEvent event) {
+    void followingOnClick(MouseEvent event) throws IOException {
+        showScrollBar(scrollBarFollowing);
         if (followingPane == null) {
             followingPane = new VBox();
-            followingPane.setSpacing(10);
+        }
+        if (!isForYou && x != 0) {
+            return;
         }
         followingPane.setStyle("-fx-background-color: red;");
         switchVbox(forYouPane,followingPane,anchorPane);
-        followingBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
-        forYouBut.setStyle("-fx-underline: false;-fx-background-color: black");
         isForYou = false;
-    }       // go to following part
+        styleFollowingButton();
+        x++;
+    }// go to following part
+
+    @FXML
+    void forYouOnClick(MouseEvent event) throws IOException {
+        showScrollBar(scrollBar);
+        if (forYouPane == null) {
+            forYouPane = new VBox();
+        }
+        if (isForYou) {
+            return;
+        }
+        forYouPane.setStyle("-fx-background-color: black;");
+        switchVbox(followingPane, forYouPane,anchorPane);
+        styleForYouButton();
+        isForYou = true;
+        x++;
+    }//go to For you part
+
+    protected void styleForYouButton() throws IOException {
+        forYouBut.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-opacity: 1");
+        forYouBut.setEffect(new Bloom(.2));
+        followingBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        followingBut.setEffect(null);
+    }
+
+    protected void styleFollowingButton() throws IOException {
+        followingBut.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-opacity: 1");
+        followingBut.setEffect(new Bloom(.2));
+        forYouBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        forYouBut.setEffect(null);
+    }
 
     protected void switchVbox(VBox oldVbox, VBox newVbox,AnchorPane pane) {
         if (containsVBox(pane)) {
@@ -135,32 +183,48 @@ public class AppController implements Initializable {
         }
         pane.getChildren().add(newVbox);
         AnchorPane.setTopAnchor(newVbox, 2.0);
-        AnchorPane.setLeftAnchor(newVbox, 20.0);
-        AnchorPane.setBottomAnchor(newVbox, 20.0);
-        AnchorPane.setRightAnchor(newVbox, 20.0);
+        AnchorPane.setLeftAnchor(newVbox, 1.0);
+        AnchorPane.setBottomAnchor(newVbox, 50.0);
+        AnchorPane.setRightAnchor(newVbox, 1.0);
     }
 
-    @FXML
-    void forYouOnClick(MouseEvent event) {
-        if (forYouPane == null) {
-            forYouPane = new VBox();
-            forYouPane.setSpacing(10);
-        }
-        forYouPane.setStyle("-fx-background-color: green;");
-        switchVbox(followingPane, forYouPane,anchorPane);
-        forYouBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
-        followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
-        isForYou = true;
-    }       //go to For you part
+    protected void initialScroll(ScrollBar scrollBar) {
+        scrollBar.setMin(0);
+        scrollBar.setMax(1);
+        scrollBar.setUnitIncrement(20);
+        scrollBar.setBlockIncrement(20);
+    }
 
-    private void scrollDownUp(ScrollEvent event) {
-        scrollBar.setValue(scrollBar.getValue() + event.getDeltaX());
-        scrollBar.valueProperty().addListener((observable, oldValue, newValue) ->
-                {   if (isForYou)
-                    forYouPane.setLayoutX(-newValue.doubleValue());
-                else
-                    followingPane.setLayoutX(-newValue.doubleValue());
-                }
+    protected void scrollFollowers() {
+            initialScroll(scrollBar);
+            scrollBar.valueProperty().addListener((obs, oldValue, newValue) -> {
+                double scrollOffset = newValue.doubleValue() * (forYouPane.getHeight() - forYouPane.getScene().getHeight());
+                forYouPane.setTranslateY(-scrollOffset);
+            });
+    }
+
+    protected void scrollFollowing() {
+            initialScroll(scrollBarFollowing);
+            scrollBarFollowing.valueProperty().addListener((obs, oldValue, newValue) -> {
+                double scrollOffset = newValue.doubleValue() * (followingPane.getHeight() - followingPane.getScene().getHeight());
+                followingPane.setTranslateY(-scrollOffset);
+            });
+    }
+
+    protected void showScrollBar(ScrollBar scroll) {
+        scrollBar.setVisible(false);
+        scrollBarFollowing.setVisible(false);
+        scroll.setVisible(true);
+    }
+
+    protected void initialUpperAnchor(AnchorPane pane) {
+        BorderStroke borderStroke = new BorderStroke(
+                Color.WHITE,
+                BorderStrokeStyle.SOLID,
+                CornerRadii.EMPTY,
+                new BorderWidths(0, 0, 1, 0)
         );
-    }       //use to connect the scroll to vbox in forYou and following
+        Border border = new Border(borderStroke);
+        pane.setBorder(border);
+    }
 }
