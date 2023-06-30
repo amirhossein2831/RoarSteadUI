@@ -49,7 +49,7 @@ public class AppController implements Initializable {
     protected ImageView profImage;
 
     @FXML
-    private Button profileBut;
+    protected Button profileBut;
 
     @FXML
     private Button profileImageBut;

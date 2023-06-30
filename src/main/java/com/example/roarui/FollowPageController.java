@@ -35,6 +35,8 @@ public class FollowPageController extends AppController {
         clickOn();
         logOutPageAction();
         backBut.setOnAction(event -> goTo(event, "profile", "Profile"));
+        homeBut.setOnAction(event -> goTo(event, "app", "Home"));
+        profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
         scrollFollowers();
         scrollFollowing();
     }
