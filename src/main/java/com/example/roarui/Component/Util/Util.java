@@ -22,7 +22,8 @@ public class Util {
     public static final MouseEvent syntheticMouseEvent = new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0,
             null, 0, false, false, false, false, false, false, false, false, false, false, null);
 
-    public static final Alert WARNING_ALERT = warningAlert();
+    public static final Alert WARNING_ALERT = logOutAlert();
+    public static final Alert UNFOLLOW_ALERT = unFollowAlert();
     public static boolean isFollowers;
     public static void goTo(ActionEvent event, String path, String title) {
         Parent root = null;
@@ -71,11 +72,20 @@ public class Util {
         stage.show();
     }
 
-    public static Alert warningAlert() {
+    private static Alert logOutAlert() {
         Alert alert = new Alert(javafx.scene.control.Alert.AlertType.WARNING, "Are you sure",
                 ButtonType.YES, ButtonType.CLOSE);
         alert.setHeaderText("Are you sure to LOG OUT?");
         alert.setContentText("you can always back to your account !");
+        return alert;
+    }
+
+    private static Alert unFollowAlert() {
+        Alert alert = new Alert(javafx.scene.control.Alert.AlertType.WARNING, "Are you sure to UnFollow?",
+                ButtonType.YES, ButtonType.CLOSE);
+        alert.setHeaderText("Are you sure to UnFollow?");
+        alert.setContentText("Their Roars will no longer show up in your home timeline." +
+                " You can still view their profile, unless their Roars are protected. ");
         return alert;
     }
 
