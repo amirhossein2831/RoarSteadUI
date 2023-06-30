@@ -172,7 +172,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="192.0" prefWidth="721.0">
+                  <AnchorPane fx:id="middleAnchor" prefHeight="192.0" prefWidth="721.0">
                      <children>
                         <Label layoutX="20.0" layoutY="1.0" prefHeight="26.0" prefWidth="382.0" text="profileName" textFill="#fcfcfc">
                            <font>
@@ -195,7 +195,7 @@
                               <Cursor fx:constant="NONE" />
                            </cursor>
                         </TextArea>
-                        <Button fx:id="roarBut" layoutX="52.0" layoutY="224.0" mnemonicParsing="false" onMouseClicked="#roarAction" style="-fx-background-color: black;" text="Roar" textFill="WHITE">
+                        <Button fx:id="roarBut" layoutX="52.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#roarAction" style="-fx-background-color: black;" text="Roar" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -219,7 +219,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="mediaBut" layoutX="476.0" layoutY="224.0" mnemonicParsing="false" onMouseClicked="#mediaAction" style="-fx-background-color: black;" text="Media" textFill="WHITE">
+                        <Button fx:id="mediaBut" layoutX="476.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#mediaAction" style="-fx-background-color: black;" text="Media" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>

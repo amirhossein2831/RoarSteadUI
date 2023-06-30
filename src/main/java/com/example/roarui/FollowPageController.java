@@ -30,8 +30,12 @@ public class FollowPageController extends AppController {
     @FXML
     private Button followersBut; //forYouMethod
 
+    @FXML
+    private AnchorPane upperAnchor;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initialUpperAnchor(upperAnchor);
         clickOn();
         logOutPageAction();
         backBut.setOnAction(event -> goTo(event, "profile", "Profile"));
@@ -162,18 +166,10 @@ public class FollowPageController extends AppController {
         AnchorPane.setLeftAnchor(textArea, 72.0);
         AnchorPane.setTopAnchor(textArea,49.0);
 
-        BorderStroke borderStroke = new BorderStroke(
-                Color.WHITE,
-                BorderStrokeStyle.SOLID,
-                CornerRadii.EMPTY,
-                new BorderWidths(.5, 0, 0, 0)
-        );
-        Border border = new Border(borderStroke);
+
         setActionForProfile(image,profName,userName);
         pane.getChildren().addAll(button,image,profName,userName,textArea);
         pane.setPrefHeight(70);
-        pane.setBorder(border);
-
         VBox.setVgrow(anchorPane, javafx.scene.layout.Priority.ALWAYS);
         boxToAdd.getChildren().add(pane);
     }

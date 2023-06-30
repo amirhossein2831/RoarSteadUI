@@ -132,7 +132,7 @@
         <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="1080.0" prefWidth="673.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 0 .5;">
             <children>
                 <AnchorPane fx:id="anchorPane" layoutY="140.0" prefHeight="941.0" prefWidth="677.0" />
-            <AnchorPane layoutX="1.0" opacity="0.96" prefHeight="140.0" prefWidth="675.0" style="-fx-background-color: black;" />
+            <AnchorPane fx:id="upperAnchor" layoutX="1.0" opacity="0.96" prefHeight="140.0" prefWidth="675.0" style="-fx-background-color: black;" />
                 <Label layoutX="100.0" layoutY="21.0" text="ProfileName" textFill="WHITE">
                     <font>
                         <Font size="25.0" />
@@ -143,7 +143,7 @@
                         <Font size="17.0" />
                     </font>
                 </Button>
-                <Button fx:id="followersBut" layoutX="3.0" layoutY="92.0" mnemonicParsing="false" onMouseClicked="#forYouOnClick" opacity="0.93" prefHeight="48.0" prefWidth="312.0" style="-fx-background-color: black;" stylesheets="@../Css/Button.css" text="Followers" textFill="WHITE">
+                <Button fx:id="followersBut" layoutX="3.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#forYouOnClick" opacity="0.93" prefHeight="44.0" prefWidth="312.0" style="-fx-background-color: black;" stylesheets="@../Css/Button.css" text="Followers" textFill="WHITE">
                     <font>
                         <Font size="17.0" />
                     </font>

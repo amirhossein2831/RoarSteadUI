@@ -8,9 +8,9 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.effect.Bloom;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,6 +23,9 @@ public class AppController implements Initializable {
 
     @FXML
     protected Button homeBut;
+
+    @FXML
+    protected AnchorPane upperAnchor;
 
     @FXML
     protected AnchorPane logPane;
@@ -73,6 +76,7 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initialUpperAnchor(upperAnchor);
         logOutPageAction();
         profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
         profileImageBut.setOnAction(event -> goTo(event,"profile","Profile"));
@@ -211,5 +215,16 @@ public class AppController implements Initializable {
         scrollBar.setVisible(false);
         scrollBarFollowing.setVisible(false);
         scroll.setVisible(true);
+    }
+
+    protected void initialUpperAnchor(AnchorPane pane) {
+        BorderStroke borderStroke = new BorderStroke(
+                Color.WHITE,
+                BorderStrokeStyle.SOLID,
+                CornerRadii.EMPTY,
+                new BorderWidths(0, 0, 1, 0)
+        );
+        Border border = new Border(borderStroke);
+        pane.setBorder(border);
     }
 }

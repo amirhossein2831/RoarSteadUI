@@ -33,6 +33,9 @@ public class ProfileController extends AppController {
     private AnchorPane optionPane;
 
     @FXML
+    private AnchorPane middleAnchor;
+
+    @FXML
     private Button roarBut;
 
     @FXML
@@ -60,6 +63,7 @@ public class ProfileController extends AppController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initialUpperAnchor(middleAnchor);
         logOutPageAction();
         createProfileCircle();
         homeBut.setOnAction(event -> goTo(event, "app", "HOME"));
