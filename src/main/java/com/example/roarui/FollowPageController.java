@@ -70,7 +70,7 @@ public class FollowPageController extends AppController {
         pane.setStyle("-fx-background-color: black;");
         //TODO check the person isFollowed already if yse text of button set to Following else set to Follow
         Button button = new Button(buttonText);
-        String strButton = button.getText();
+        StringBuilder strButton = new StringBuilder(button.getText());
         button.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 15px;" +
                         "-fx-border-color: white;" +
@@ -80,7 +80,7 @@ public class FollowPageController extends AppController {
         button.hoverProperty().addListener((observableValue, aBoolean, newValue) -> {
             if (newValue) {
                 //TODO should handle that the person is followed or not
-                if (strButton.equals("Following")) {
+                if (strButton.toString().equals("Following")) {
                     button.setText("UnFollow");
                     button.setStyle("-fx-border-color: red;" +
                             "-fx-text-fill: red;" +
@@ -88,7 +88,7 @@ public class FollowPageController extends AppController {
                             "-fx-background-radius: 15px;" +
                             "-fx-border-radius: 15px;" +
                             "-fx-font-size: 15px");
-                } else if (strButton.equals("Follow")) {
+                } else if (strButton.toString().equals("Follow")) {
                     button.setStyle("-fx-background-color: black;" +
                             "-fx-font-weight: bold;" +
                             "-fx-background-radius: 15px;" +
@@ -98,7 +98,7 @@ public class FollowPageController extends AppController {
                             "-fx-font-size: 15px");
                 }
             } else {
-                button.setText(strButton);
+                button.setText(strButton.toString());
                 button.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 15px;" +
                         "-fx-border-color: white;" +
@@ -110,6 +110,22 @@ public class FollowPageController extends AppController {
         button.setLayoutX(576);
         button.setLayoutY(13);
         button.setCursor(Cursor.HAND);
+        button.setOnAction(event -> {
+            if (strButton.toString().equals("Following")) {
+                UNFOLLOW_ALERT.handleCustomButtonAction();
+                //TODO the person should be unfollowed
+                if (UNFOLLOW_ALERT.isYes()) {
+                    button.setText("Follow");
+                    strButton.delete(0,strButton.length());
+                    strButton.append("Follow");
+                }
+            } else if (strButton.toString().equals("Follow")) {
+                //TODO the person should be followed
+                button.setText("Following");
+                strButton.delete(0,strButton.length());
+                strButton.append("Following");
+            }
+        });
 
 
         Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/l4.png")).openStream());
