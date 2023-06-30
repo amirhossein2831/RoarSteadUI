@@ -51,7 +51,6 @@ public class ProfileController extends AppController {
 
     private VBox repliesBox;
 
-
     @FXML
     private Button highlightBut;
 
@@ -84,7 +83,6 @@ public class ProfileController extends AppController {
             goTo(event, "followPage", "Following");
         });
     }
-
 
     private void createProfileCircle() {
         Circle circle = new Circle(67, 67, 67);
@@ -170,6 +168,7 @@ public class ProfileController extends AppController {
         }
         showBox(event, roarBox);
     }
+
     private void showBox(MouseEvent event,VBox vbox) {
         if (repliesBox != null) {
             repliesBox.setVisible(false);

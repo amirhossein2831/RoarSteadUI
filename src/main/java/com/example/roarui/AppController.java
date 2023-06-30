@@ -128,7 +128,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void followingOnClick(MouseEvent event) {
+    void followingOnClick(MouseEvent event) throws IOException {
         if (followingPane == null) {
             followingPane = new VBox();
         }
@@ -161,7 +161,7 @@ public class AppController implements Initializable {
         forYouBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
         followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
     }
-    protected void underLineFollowing() {
+    protected void underLineFollowing() throws IOException {
         followingBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
         forYouBut.setStyle("-fx-underline: false;-fx-background-color: black");
     }

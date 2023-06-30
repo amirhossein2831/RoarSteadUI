@@ -1,28 +1,21 @@
 package com.example.roarui;
 
-import com.example.roarui.Component.Util.Util;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
 import static com.example.roarui.Component.Util.Util.*;
 
 
@@ -50,35 +43,71 @@ public class FollowPageController extends AppController {
     }
 
     @Override
-    protected void underLineForYou() throws IOException {
+    protected void underLineForYou() throws IOException { //forYou is different name for followers
         isFollowers = true;
         followersBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
         followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
         for (int i = 0; i < 12; i++) {
-            createFollowingPeople();
+            //TODO it can be Follow or Following depend on that you follow or not
+            createPeople("Follow",forYouPane);
         }
     }
     @Override
-    protected void underLineFollowing() {
+    protected void underLineFollowing() throws IOException {
         isFollowers = false;
         followingBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
         followersBut.setStyle("-fx-underline: false;-fx-background-color: black");
+        for (int i = 0; i < 20; i++) {
+            createPeople("Following",followingPane);
+        }
     }
 
 
-    private void createFollowingPeople() throws IOException {
+    private void createPeople(String buttonText,VBox boxToAdd) throws IOException {
         AnchorPane pane = new AnchorPane();
         pane.setStyle("-fx-background-color: black;");
-
-        Button button = new Button("Following");
+        //TODO check the person isFollowed already if yse text of button set to Following else set to Follow
+        Button button = new Button(buttonText);
+        String strButton = button.getText();
         button.setStyle("-fx-background-color: black;" +
                         "-fx-background-radius: 15px;" +
                         "-fx-border-color: white;" +
                         "-fx-border-radius: 15px;" +
                         "-fx-text-fill: white;" +
                         "-fx-font-size: 15px");
+        button.hoverProperty().addListener((observableValue, aBoolean, newValue) -> {
+            if (newValue) {
+                //TODO should handle that the person is followed or not
+                if (strButton.equals("Following")) {
+                    button.setText("UnFollow");
+                    button.setStyle("-fx-border-color: red;" +
+                            "-fx-text-fill: red;" +
+                            "-fx-background-color: black;" +
+                            "-fx-background-radius: 15px;" +
+                            "-fx-border-radius: 15px;" +
+                            "-fx-font-size: 15px");
+                } else if (strButton.equals("Follow")) {
+                    button.setStyle("-fx-background-color: black;" +
+                            "-fx-font-weight: bold;" +
+                            "-fx-background-radius: 15px;" +
+                            "-fx-border-color: white;" +
+                            "-fx-border-radius: 15px;" +
+                            "-fx-text-fill: white;" +
+                            "-fx-font-size: 15px");
+                }
+            } else {
+                button.setText(strButton);
+                button.setStyle("-fx-background-color: black;" +
+                        "-fx-background-radius: 15px;" +
+                        "-fx-border-color: white;" +
+                        "-fx-border-radius: 15px;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-font-size: 15px");
+            }
+        });
         button.setLayoutX(576);
         button.setLayoutY(13);
+
 
         Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/l4.png")).openStream());
         ImageView image = new ImageView(imageHolder);
@@ -91,14 +120,10 @@ public class FollowPageController extends AppController {
 
         Label profName = new Label("ProfileName");
         profName.setTextFill(Color.WHITE);
-
         Label userName = new Label("userName");
         Color grayColor = Color.gray(0.5);
-
         userName.setTextFill(grayColor);
-//        profName.setStyle("-fx-text-fill: gray;" +
-//                          "-fx-font-size: 14px");
-//
+
         TextArea textArea = new TextArea("ladsjf;\nldajflasf\nsd");
         textArea.setEditable(false);
         textArea.setCursor(Cursor.NONE);
@@ -117,6 +142,7 @@ public class FollowPageController extends AppController {
         AnchorPane.setLeftAnchor(userName,82.0);
         AnchorPane.setLeftAnchor(textArea, 72.0);
         AnchorPane.setTopAnchor(textArea,49.0);
+
         BorderStroke borderStroke = new BorderStroke(
                 Color.WHITE,                       // Border color
                 BorderStrokeStyle.SOLID,           // Border style
@@ -127,9 +153,11 @@ public class FollowPageController extends AppController {
         pane.getChildren().addAll(button,image,profName,userName,textArea);
         pane.setPrefHeight(70);
         pane.setBorder(border);
+
         VBox.setVgrow(anchorPane, javafx.scene.layout.Priority.ALWAYS);
-        forYouPane.getChildren().add(pane);
+        boxToAdd.getChildren().add(pane);
     }
+
 
     private void clickOn() throws IOException {
         if (isFollowers) {
