@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.roarui.AppController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.roarui.FollowPage">
     <children>
         <AnchorPane fx:id="logPane" prefHeight="1080.0" prefWidth="682.0" style="-fx-background-color: #232323;">
             <children>
@@ -152,7 +152,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="23.0" layoutY="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 50px;" stylesheets="@../Css/Button.css" text="Back" textFill="WHITE">
+            <Button fx:id="backBut" layoutX="23.0" layoutY="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 50px;" stylesheets="@../Css/Button.css" text="Back" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
