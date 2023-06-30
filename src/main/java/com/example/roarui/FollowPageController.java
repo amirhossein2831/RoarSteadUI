@@ -6,6 +6,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -38,20 +39,25 @@ public class FollowPageController extends AppController {
         scrollFollowing();
     }
     @Override
-    protected void underLineForYou() throws IOException { //forYou is different name for followers
+    protected void styleForYouButton() throws IOException { //forYou is different name for followers
         isFollowers = true;
-        followersBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
-        followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
+        followersBut.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-opacity: 1");
+        followersBut.setEffect(new Bloom(.3));
+        followingBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        followingBut.setEffect(null);
+
         for (int i = 0; i < 12; i++) {
             //TODO it can be Follow or Following depend on that you follow or not
             createPeople("Follow",forYouPane);
         }
     }
     @Override
-    protected void underLineFollowing() throws IOException {
+    protected void styleFollowingButton() throws IOException {
         isFollowers = false;
-        followingBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
-        followersBut.setStyle("-fx-underline: false;-fx-background-color: black");
+        followingBut.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-opacity: 1");
+        followingBut.setEffect(new Bloom(.3));
+        followersBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        followersBut.setEffect(null);
         for (int i = 0; i < 20; i++) {
             createPeople("Following",followingPane);
         }

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.effect.Bloom;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -138,7 +139,7 @@ public class AppController implements Initializable {
         followingPane.setStyle("-fx-background-color: red;");
         switchVbox(forYouPane,followingPane,anchorPane);
         isForYou = false;
-        underLineFollowing();
+        styleFollowingButton();
         x++;
     }// go to following part
 
@@ -153,19 +154,23 @@ public class AppController implements Initializable {
         }
         forYouPane.setStyle("-fx-background-color: black;");
         switchVbox(followingPane, forYouPane,anchorPane);
-        underLineForYou();
+        styleForYouButton();
         isForYou = true;
         x++;
     }//go to For you part
 
-    protected void underLineForYou() throws IOException {
-        forYouBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
-        followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
+    protected void styleForYouButton() throws IOException {
+        forYouBut.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-opacity: 1");
+        forYouBut.setEffect(new Bloom(.2));
+        followingBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        followingBut.setEffect(null);
     }
 
-    protected void underLineFollowing() throws IOException {
-        followingBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
-        forYouBut.setStyle("-fx-underline: false;-fx-background-color: black");
+    protected void styleFollowingButton() throws IOException {
+        followingBut.setStyle("-fx-background-color: black;-fx-text-fill: white;-fx-opacity: 1");
+        followingBut.setEffect(new Bloom(.2));
+        forYouBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        forYouBut.setEffect(null);
     }
 
     protected void switchVbox(VBox oldVbox, VBox newVbox,AnchorPane pane) {

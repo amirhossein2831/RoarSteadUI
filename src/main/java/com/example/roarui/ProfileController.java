@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.effect.Bloom;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -73,6 +74,7 @@ public class ProfileController extends AppController {
             isFollowers = false;
             goTo(event, "followPage", "Following");
         });
+        roarBut.fireEvent(syntheticMouseEvent);
     }
 
     private void createProfileCircle() {
@@ -172,16 +174,22 @@ public class ProfileController extends AppController {
         }if (repliesBox != null) {
             roarBox.setVisible(false);
         }
-
         vbox.setVisible(true);
 
-        roarBut.setStyle("-fx-background-color: black;-fx-underline: false");
-        repliesBut.setStyle("-fx-background-color: black;-fx-underline: false");
-        mediaBut.setStyle("-fx-background-color: black;-fx-underline: false");
-        highlightBut.setStyle("-fx-background-color: black;-fx-underline: false");
-        likesBut.setStyle("-fx-background-color: black;-fx-underline: false");
+        roarBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        roarBut.setEffect(null);
+        repliesBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        repliesBut.setEffect(null);
+        mediaBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        mediaBut.setEffect(null);
+        highlightBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        highlightBut.setEffect(null);
+        likesBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
+        likesBut.setEffect(null);
+
 
         Button selectedButton = (Button) event.getSource();
-        selectedButton.setStyle("-fx-background-color: black; -fx-underline: true;");
+        selectedButton.setStyle("-fx-background-color: black;-fx-opacity: 1");
+        selectedButton.setEffect(new Bloom(.3));
     }
 }
