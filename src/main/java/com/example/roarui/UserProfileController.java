@@ -10,10 +10,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import static com.example.roarui.Component.Util.Util.*;
 
 public class UserProfileController extends AppController{
@@ -36,6 +34,9 @@ public class UserProfileController extends AppController{
     protected AnchorPane optionPane;
 
     @FXML
+    private Button followUnFollowBut;
+
+    @FXML
     protected Button roarBut;
 
     protected VBox roarBox;
@@ -52,12 +53,10 @@ public class UserProfileController extends AppController{
     protected Button likesBut;
     protected VBox likesBox;
 
-    @FXML
-    private Button followUnFollowBut;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //TODO check that person is followed or not and set textOf followUnFollowBut
-        
+        //TODO check that person is followed or not and set textOf followUnFollowBut  following? Following : Follow
+//        followUnFollowBut.setText("Follow/Following");
         initial(true);
         initialFollowUnFollowButton();
         profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
@@ -69,6 +68,7 @@ public class UserProfileController extends AppController{
         logOutPageAction();
         createProfileCircle();
         homeBut.setOnAction(event -> goTo(event, "app", "HOME"));
+        //Todo should get the link from the server
         headerImageView.setOnMouseClicked(event -> openLink("/home/amirhossein/IdeaProjects/RoarUi/src/main/resources/com/example/roarui/image/istockphoto-178488809-612x612.jpg"));
         profImageView.setOnMouseClicked(event -> openLink("/home/amirhossein/IdeaProjects/RoarUi/src/main/resources/com/example/roarui/image/l4.png"));
         followers.setOnAction(event ->{
@@ -83,10 +83,12 @@ public class UserProfileController extends AppController{
         });
         roarBut.fireEvent(syntheticMouseEvent);
     }
+
     protected void createProfileCircle() {
         Circle circle = new Circle(67, 67, 67);
         profImageView.setClip(circle);
     }
+
     @FXML
     void likesAction(MouseEvent event) {
         if (likesBox == null) {
@@ -150,6 +152,7 @@ public class UserProfileController extends AppController{
         }
         showBox(event, roarBox);
     }
+
     protected void showBox(MouseEvent event,VBox vbox) {
         if (repliesBox != null) {
             repliesBox.setVisible(false);
@@ -231,6 +234,5 @@ public class UserProfileController extends AppController{
                 strButton.append("Following");
             }
         });
-
     }
 }
