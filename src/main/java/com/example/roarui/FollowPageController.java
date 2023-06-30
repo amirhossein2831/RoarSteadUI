@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.effect.Bloom;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -158,6 +160,7 @@ public class FollowPageController extends AppController {
                 "    -fx-background-color: black;" +
                 "    -fx-border-color: black;" +
                 "    -fx-border-radius: 10px;");
+        textArea.setEffect(new InnerShadow(BlurType.THREE_PASS_BOX,Color.BLACK,10,17,0,0));
 
         AnchorPane.setTopAnchor(profName, 5.0);
         AnchorPane.setLeftAnchor(profName, 80.0);
