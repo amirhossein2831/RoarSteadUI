@@ -143,6 +143,10 @@ public class FollowPageController extends AppController {
                 new BorderWidths(.5, 0, 0, 0)       // Border widths (top, right, bottom, left)
         );
         Border border = new Border(borderStroke);
+        image.setCursor(Cursor.HAND);
+        button.setCursor(Cursor.HAND);
+        profName.setCursor(Cursor.HAND);
+        userName.setCursor(Cursor.HAND);
         pane.getChildren().addAll(button,image,profName,userName,textArea);
         pane.setPrefHeight(70);
         pane.setBorder(border);
