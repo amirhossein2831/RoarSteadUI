@@ -1,21 +1,32 @@
 package com.example.roarui;
 
+import com.example.roarui.Component.Util.Util;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import static com.example.roarui.Component.Util.Util.goTo;
-import static com.example.roarui.Component.Util.Util.openLink;
+
+import static com.example.roarui.Component.Util.Util.*;
 
 public class ProfileController extends AppController {
     @FXML
     private ImageView profImageView;
+
+    @FXML
+    private TextArea bioTextArea;
 
     @FXML
     private ImageView headerImageView;
@@ -25,6 +36,12 @@ public class ProfileController extends AppController {
 
     @FXML
     private Button roarBut;
+
+    @FXML
+    private Button followers;
+
+    @FXML
+    private Button following;
 
     private VBox roarBox;
 
@@ -58,7 +75,16 @@ public class ProfileController extends AppController {
         //TODO change the below link with the user link
         headerImageView.setOnMouseClicked(event -> openLink("/home/amirhossein/IdeaProjects/RoarUi/src/main/resources/com/example/roarui/image/istockphoto-178488809-612x612.jpg"));
         profImageView.setOnMouseClicked(event -> openLink("/home/amirhossein/IdeaProjects/RoarUi/src/main/resources/com/example/roarui/image/l4.png"));
+        followers.setOnAction(event ->{
+            isFollowers = true;
+            goTo(event, "followPage", "Followers");
+        });
+        following.setOnAction(event -> {
+            isFollowers = false;
+            goTo(event, "followPage", "Following");
+        });
     }
+
 
     private void createProfileCircle() {
         Circle circle = new Circle(67, 67, 67);

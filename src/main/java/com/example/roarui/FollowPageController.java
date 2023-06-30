@@ -1,22 +1,29 @@
 package com.example.roarui;
 
+import com.example.roarui.Component.Util.Util;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static com.example.roarui.Component.Util.Util.goTo;
+import static com.example.roarui.Component.Util.Util.*;
 
 
 public class FollowPageController extends AppController {
@@ -32,22 +39,34 @@ public class FollowPageController extends AppController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            clickOn();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         logOutPageAction();
         backBut.setOnAction(event -> goTo(event, "profile", "Profile"));
+        scrollFollowers();
     }
 
     @Override
     protected void underLineForYou() throws IOException {
+        isFollowers = true;
         followersBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
         followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
+        for (int i = 0; i < 12; i++) {
+            createFollowingPeople();
+        }
     }
     @Override
     protected void underLineFollowing() {
+        isFollowers = false;
         followingBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
         followersBut.setStyle("-fx-underline: false;-fx-background-color: black");
     }
 
-    private void createFollowersPeople() throws IOException {
+
+    private void createFollowingPeople() throws IOException {
         AnchorPane pane = new AnchorPane();
         pane.setStyle("-fx-background-color: black;");
 
@@ -102,7 +121,7 @@ public class FollowPageController extends AppController {
                 Color.WHITE,                       // Border color
                 BorderStrokeStyle.SOLID,           // Border style
                 CornerRadii.EMPTY,                 // Border corner radii
-                new BorderWidths(1, 0, 0, 0)       // Border widths (top, right, bottom, left)
+                new BorderWidths(.5, 0, 0, 0)       // Border widths (top, right, bottom, left)
         );
         Border border = new Border(borderStroke);
         pane.getChildren().addAll(button,image,profName,userName,textArea);
@@ -110,5 +129,13 @@ public class FollowPageController extends AppController {
         pane.setBorder(border);
         VBox.setVgrow(anchorPane, javafx.scene.layout.Priority.ALWAYS);
         forYouPane.getChildren().add(pane);
+    }
+
+    private void clickOn() throws IOException {
+        if (isFollowers) {
+            followersBut.fireEvent(syntheticMouseEvent);
+        }
+        else
+            followingBut.fireEvent(syntheticMouseEvent);
     }
 }

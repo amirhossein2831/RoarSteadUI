@@ -1,5 +1,6 @@
 package com.example.roarui;
 
+import com.example.roarui.Component.Util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -34,10 +36,16 @@ public class AppController implements Initializable {
     private Button followingBut;
 
     @FXML
+    private AnchorPane rightPane;
+
+    @FXML
+    protected HBox parentHbox;
+
+    @FXML
     private Button forYouBut;
 
     @FXML
-    private ScrollBar scrollBar;
+    protected ScrollBar scrollBar;
 
     @FXML
     protected ImageView profImage;
@@ -52,6 +60,8 @@ public class AppController implements Initializable {
     protected AnchorPane logPage;
 
     protected boolean isForYou;
+
+    protected int x;
 
     protected VBox forYouPane;
 
@@ -69,7 +79,6 @@ public class AppController implements Initializable {
         profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
         profileImageBut.setOnAction(event -> goTo(event,"profile","Profile"));
         forYouBut.fireEvent(syntheticMouseEvent);
-        scrollBar.setOnScroll(this::scrollDownUp);
     }
 
     protected void initialLogOutButton() {
@@ -123,13 +132,14 @@ public class AppController implements Initializable {
         if (followingPane == null) {
             followingPane = new VBox();
         }
-        if (!isForYou) {
+        if (!isForYou && x != 0) {
             return;
         }
         followingPane.setStyle("-fx-background-color: red;");
         switchVbox(forYouPane,followingPane,anchorPane);
         isForYou = false;
         underLineFollowing();
+        x++;
     }// go to following part
 
     @FXML
@@ -140,10 +150,11 @@ public class AppController implements Initializable {
         if (isForYou) {
             return;
         }
-        forYouPane.setStyle("-fx-background-color: green;");
+        forYouPane.setStyle("-fx-background-color: black;");
         switchVbox(followingPane, forYouPane,anchorPane);
         underLineForYou();
         isForYou = true;
+        x++;
     }//go to For you part
 
     protected void underLineForYou() throws IOException {
@@ -162,19 +173,21 @@ public class AppController implements Initializable {
         pane.getChildren().add(newVbox);
         AnchorPane.setTopAnchor(newVbox, 2.0);
         AnchorPane.setLeftAnchor(newVbox, 1.0);
-        AnchorPane.setBottomAnchor(newVbox, 1.0);
+        AnchorPane.setBottomAnchor(newVbox, 50.0);
         AnchorPane.setRightAnchor(newVbox, 1.0);
     }
 
-    private void scrollDownUp(ScrollEvent event) {
-        scrollBar.setValue(scrollBar.getValue() + event.getDeltaX());
-        scrollBar.valueProperty().addListener((observable, oldValue, newValue) ->
-                {   if (isForYou)
-                    forYouPane.setLayoutX(-newValue.doubleValue());
-                else
-                    followingPane.setLayoutX(-newValue.doubleValue());
-                }
-        );
-    }       //use to connect the scroll to vbox in forYou and following
-
+    protected void initialScroll() {
+        scrollBar.setMin(0);
+        scrollBar.setMax(1);
+        scrollBar.setUnitIncrement(20);
+        scrollBar.setBlockIncrement(20);
+    }
+    protected void scrollFollowers() {
+            initialScroll();
+            scrollBar.valueProperty().addListener((obs, oldValue, newValue) -> {
+                double scrollOffset = newValue.doubleValue() * (forYouPane.getHeight() - forYouPane.getScene().getHeight());
+                forYouPane.setTranslateY(-scrollOffset);
+            });
+    }
 }

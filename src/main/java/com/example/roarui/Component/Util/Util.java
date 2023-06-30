@@ -24,7 +24,7 @@ public class Util {
             null, 0, false, false, false, false, false, false, false, false, false, false, null);
 
     public static final Alert WARNING_ALERT = warningAlert();
-
+    public static boolean isFollowers;
     public static void goTo(ActionEvent event, String path, String title) {
         Parent root = null;
         FXMLLoader load = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
