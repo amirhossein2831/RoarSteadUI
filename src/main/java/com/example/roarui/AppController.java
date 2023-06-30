@@ -45,7 +45,10 @@ public class AppController implements Initializable {
     private Button forYouBut;
 
     @FXML
-    protected ScrollBar scrollBar;
+    protected ScrollBar scrollBar;  //connect to followers and forYou Vbox
+
+    @FXML
+    protected ScrollBar scrollBarFollowing; //connect to following vbox
 
     @FXML
     protected ImageView profImage;
@@ -79,6 +82,8 @@ public class AppController implements Initializable {
         profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
         profileImageBut.setOnAction(event -> goTo(event,"profile","Profile"));
         forYouBut.fireEvent(syntheticMouseEvent);
+        scrollFollowers();
+        scrollFollowing();
     }
 
     protected void initialLogOutButton() {
@@ -129,6 +134,7 @@ public class AppController implements Initializable {
 
     @FXML
     void followingOnClick(MouseEvent event) throws IOException {
+        showScrollBar(scrollBarFollowing);
         if (followingPane == null) {
             followingPane = new VBox();
         }
@@ -144,6 +150,7 @@ public class AppController implements Initializable {
 
     @FXML
     void forYouOnClick(MouseEvent event) throws IOException {
+        showScrollBar(scrollBar);
         if (forYouPane == null) {
             forYouPane = new VBox();
         }
@@ -177,17 +184,32 @@ public class AppController implements Initializable {
         AnchorPane.setRightAnchor(newVbox, 1.0);
     }
 
-    protected void initialScroll() {
+    protected void initialScroll(ScrollBar scrollBar) {
         scrollBar.setMin(0);
         scrollBar.setMax(1);
         scrollBar.setUnitIncrement(20);
         scrollBar.setBlockIncrement(20);
     }
     protected void scrollFollowers() {
-            initialScroll();
+            initialScroll(scrollBar);
             scrollBar.valueProperty().addListener((obs, oldValue, newValue) -> {
                 double scrollOffset = newValue.doubleValue() * (forYouPane.getHeight() - forYouPane.getScene().getHeight());
                 forYouPane.setTranslateY(-scrollOffset);
             });
+    }
+    protected void scrollFollowing() {
+            initialScroll(scrollBarFollowing);
+            scrollBarFollowing.valueProperty().addListener((obs, oldValue, newValue) -> {
+                double scrollOffset = newValue.doubleValue() * (followingPane.getHeight() - followingPane.getScene().getHeight());
+                followingPane.setTranslateY(-scrollOffset);
+            });
+    }
+
+    protected void showScrollBar(ScrollBar scroll) {
+        scrollBar.setVisible(false);
+        scrollBarFollowing.setVisible(false);
+
+        scroll.setVisible(true);
+
     }
 }

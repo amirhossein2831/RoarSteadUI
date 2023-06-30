@@ -32,14 +32,11 @@ public class FollowPageController extends AppController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            clickOn();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        clickOn();
         logOutPageAction();
         backBut.setOnAction(event -> goTo(event, "profile", "Profile"));
         scrollFollowers();
+        scrollFollowing();
     }
 
     @Override
@@ -159,7 +156,7 @@ public class FollowPageController extends AppController {
     }
 
 
-    private void clickOn() throws IOException {
+    private void clickOn(){
         if (isFollowers) {
             followersBut.fireEvent(syntheticMouseEvent);
         }
