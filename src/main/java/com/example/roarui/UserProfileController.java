@@ -180,59 +180,6 @@ public class UserProfileController extends AppController{
     }
 
     private void initialFollowUnFollowButton() {
-        StringBuilder strButton = new StringBuilder(followUnFollowBut.getText());
-        followUnFollowBut.setStyle("-fx-background-color: black;" +
-                "-fx-background-radius: 15px;" +
-                "-fx-border-color: white;" +
-                "-fx-border-radius: 15px;" +
-                "-fx-text-fill: white;" +
-                "-fx-font-size: 15px");
-        followUnFollowBut.hoverProperty().addListener((observableValue, aBoolean, newValue) -> {
-            if (newValue) {
-                //TODO should handle that the person is followed or not
-                if (strButton.toString().equals("Following")) {
-                    followUnFollowBut.setText("UnFollow");
-                    followUnFollowBut.setStyle("-fx-border-color: red;" +
-                            "-fx-text-fill: red;" +
-                            "-fx-background-color: black;" +
-                            "-fx-background-radius: 15px;" +
-                            "-fx-border-radius: 15px;" +
-                            "-fx-font-size: 15px");
-                } else if (strButton.toString().equals("Follow")) {
-                    followUnFollowBut.setStyle("-fx-background-color: black;" +
-                            "-fx-font-weight: bold;" +
-                            "-fx-background-radius: 15px;" +
-                            "-fx-border-color: white;" +
-                            "-fx-border-radius: 15px;" +
-                            "-fx-text-fill: white;" +
-                            "-fx-font-size: 15px");
-                }
-            } else {
-                followUnFollowBut.setText(strButton.toString());
-                followUnFollowBut.setStyle("-fx-background-color: black;" +
-                        "-fx-background-radius: 15px;" +
-                        "-fx-border-color: white;" +
-                        "-fx-border-radius: 15px;" +
-                        "-fx-text-fill: white;" +
-                        "-fx-font-size: 15px");
-            }
-        });
-        followUnFollowBut.setCursor(Cursor.HAND );
-        followUnFollowBut.setOnAction(event -> {
-            if (strButton.toString().equals("Following")) {
-                UNFOLLOW_ALERT.handleCustomButtonAction();
-                //TODO the person should be unfollowed
-                if (UNFOLLOW_ALERT.isYes()) {
-                    followUnFollowBut.setText("Follow");
-                    strButton.delete(0,strButton.length());
-                    strButton.append("Follow");
-                }
-            } else if (strButton.toString().equals("Follow")) {
-                //TODO the person should be followed
-                followUnFollowBut.setText("Following");
-                strButton.delete(0,strButton.length());
-                strButton.append("Following");
-            }
-        });
+        initialFollowingFollowersBut(followUnFollowBut);
     }
 }
