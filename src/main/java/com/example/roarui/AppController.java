@@ -10,6 +10,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import static com.example.roarui.Component.Util.Util.*;
@@ -120,7 +122,6 @@ public class AppController implements Initializable {
     void followingOnClick(MouseEvent event) {
         if (followingPane == null) {
             followingPane = new VBox();
-            followingPane.setSpacing(10);
         }
         if (!isForYou) {
             return;
@@ -132,10 +133,9 @@ public class AppController implements Initializable {
     }// go to following part
 
     @FXML
-    void forYouOnClick(MouseEvent event) {
+    void forYouOnClick(MouseEvent event) throws IOException {
         if (forYouPane == null) {
             forYouPane = new VBox();
-            forYouPane.setSpacing(10);
         }
         if (isForYou) {
             return;
@@ -146,7 +146,7 @@ public class AppController implements Initializable {
         isForYou = true;
     }//go to For you part
 
-    protected void underLineForYou() {
+    protected void underLineForYou() throws IOException {
         forYouBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
         followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
     }
@@ -161,9 +161,9 @@ public class AppController implements Initializable {
         }
         pane.getChildren().add(newVbox);
         AnchorPane.setTopAnchor(newVbox, 2.0);
-        AnchorPane.setLeftAnchor(newVbox, 20.0);
-        AnchorPane.setBottomAnchor(newVbox, 20.0);
-        AnchorPane.setRightAnchor(newVbox, 20.0);
+        AnchorPane.setLeftAnchor(newVbox, 1.0);
+        AnchorPane.setBottomAnchor(newVbox, 1.0);
+        AnchorPane.setRightAnchor(newVbox, 1.0);
     }
 
     private void scrollDownUp(ScrollEvent event) {
