@@ -26,9 +26,6 @@ public class ProfileController extends AppController {
     private ImageView profImageView;
 
     @FXML
-    private TextArea bioTextArea;
-
-    @FXML
     private ImageView headerImageView;
 
     @FXML
@@ -42,28 +39,22 @@ public class ProfileController extends AppController {
 
     @FXML
     private Button following;
-
     private VBox roarBox;
-
 
     @FXML
     private Button repliesBut;
-
     private VBox repliesBox;
 
     @FXML
     private Button highlightBut;
-
     private VBox highlightBox;
 
     @FXML
     private Button mediaBut;
-
     private VBox mediaBox;
 
     @FXML
     private Button likesBut;
-
     private VBox likesBox;
 
     @Override

@@ -1,6 +1,5 @@
 package com.example.roarui;
 
-import com.example.roarui.Component.Util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,11 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,9 +31,6 @@ public class AppController implements Initializable {
 
     @FXML
     private Button followingBut;
-
-    @FXML
-    private AnchorPane rightPane;
 
     @FXML
     protected HBox parentHbox;
@@ -168,6 +162,7 @@ public class AppController implements Initializable {
         forYouBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
         followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
     }
+
     protected void underLineFollowing() throws IOException {
         followingBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
         forYouBut.setStyle("-fx-underline: false;-fx-background-color: black");
@@ -190,6 +185,7 @@ public class AppController implements Initializable {
         scrollBar.setUnitIncrement(20);
         scrollBar.setBlockIncrement(20);
     }
+
     protected void scrollFollowers() {
             initialScroll(scrollBar);
             scrollBar.valueProperty().addListener((obs, oldValue, newValue) -> {
@@ -197,6 +193,7 @@ public class AppController implements Initializable {
                 forYouPane.setTranslateY(-scrollOffset);
             });
     }
+
     protected void scrollFollowing() {
             initialScroll(scrollBarFollowing);
             scrollBarFollowing.valueProperty().addListener((obs, oldValue, newValue) -> {
@@ -208,8 +205,6 @@ public class AppController implements Initializable {
     protected void showScrollBar(ScrollBar scroll) {
         scrollBar.setVisible(false);
         scrollBarFollowing.setVisible(false);
-
         scroll.setVisible(true);
-
     }
 }

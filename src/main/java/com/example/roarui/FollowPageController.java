@@ -1,7 +1,5 @@
 package com.example.roarui;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -38,7 +36,6 @@ public class FollowPageController extends AppController {
         scrollFollowers();
         scrollFollowing();
     }
-
     @Override
     protected void underLineForYou() throws IOException { //forYou is different name for followers
         isFollowers = true;
@@ -58,7 +55,6 @@ public class FollowPageController extends AppController {
             createPeople("Following",followingPane);
         }
     }
-
 
     private void createPeople(String buttonText,VBox boxToAdd) throws IOException {
         AnchorPane pane = new AnchorPane();
@@ -154,7 +150,6 @@ public class FollowPageController extends AppController {
         VBox.setVgrow(anchorPane, javafx.scene.layout.Priority.ALWAYS);
         boxToAdd.getChildren().add(pane);
     }
-
 
     private void clickOn(){
         if (isFollowers) {
