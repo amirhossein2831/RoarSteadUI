@@ -17,7 +17,7 @@ import static com.example.roarui.Component.Util.Util.*;
 public class AppController implements Initializable {
 
     @FXML
-    private AnchorPane anchorPane;
+    protected AnchorPane anchorPane;
 
     @FXML
     protected Button homeBut;
@@ -49,11 +49,11 @@ public class AppController implements Initializable {
     @FXML
     protected AnchorPane logPage;
 
-    private boolean isForYou;
+    protected boolean isForYou;
 
-    private VBox forYouPane;
+    protected VBox forYouPane;
 
-    private VBox followingPane;
+    protected VBox followingPane;
 
     private boolean isOpen;
 
@@ -122,12 +122,38 @@ public class AppController implements Initializable {
             followingPane = new VBox();
             followingPane.setSpacing(10);
         }
+        if (!isForYou) {
+            return;
+        }
         followingPane.setStyle("-fx-background-color: red;");
         switchVbox(forYouPane,followingPane,anchorPane);
+        isForYou = false;
+        underLineFollowing();
+    }// go to following part
+
+    @FXML
+    void forYouOnClick(MouseEvent event) {
+        if (forYouPane == null) {
+            forYouPane = new VBox();
+            forYouPane.setSpacing(10);
+        }
+        if (isForYou) {
+            return;
+        }
+        forYouPane.setStyle("-fx-background-color: green;");
+        switchVbox(followingPane, forYouPane,anchorPane);
+        underLineForYou();
+        isForYou = true;
+    }//go to For you part
+
+    protected void underLineForYou() {
+        forYouBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
+        followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
+    }
+    protected void underLineFollowing() {
         followingBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
         forYouBut.setStyle("-fx-underline: false;-fx-background-color: black");
-        isForYou = false;
-    }       // go to following part
+    }
 
     protected void switchVbox(VBox oldVbox, VBox newVbox,AnchorPane pane) {
         if (containsVBox(pane)) {
@@ -140,19 +166,6 @@ public class AppController implements Initializable {
         AnchorPane.setRightAnchor(newVbox, 20.0);
     }
 
-    @FXML
-    void forYouOnClick(MouseEvent event) {
-        if (forYouPane == null) {
-            forYouPane = new VBox();
-            forYouPane.setSpacing(10);
-        }
-        forYouPane.setStyle("-fx-background-color: green;");
-        switchVbox(followingPane, forYouPane,anchorPane);
-        forYouBut.setStyle("-fx-underline: true;-fx-background-color: black;-fx-text-fill: white");
-        followingBut.setStyle("-fx-underline: false;-fx-background-color: black");
-        isForYou = true;
-    }       //go to For you part
-
     private void scrollDownUp(ScrollEvent event) {
         scrollBar.setValue(scrollBar.getValue() + event.getDeltaX());
         scrollBar.valueProperty().addListener((observable, oldValue, newValue) ->
@@ -163,4 +176,5 @@ public class AppController implements Initializable {
                 }
         );
     }       //use to connect the scroll to vbox in forYou and following
+
 }
