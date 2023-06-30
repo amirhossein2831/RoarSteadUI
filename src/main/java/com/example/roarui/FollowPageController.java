@@ -180,15 +180,15 @@ public class FollowPageController extends AppController {
     private void setActionForProfile(ImageView image, Label profName, Label userName) {
         ActionEvent imageEvent = new ActionEvent(image, null);
         image.setCursor(Cursor.HAND);
-        image.setOnMouseClicked(event -> goTo(imageEvent,"profile","UserProfile"));
+        image.setOnMouseClicked(event -> goTo(imageEvent,"userProfile","User Profile"));
 
         ActionEvent profileEvent = new ActionEvent(profName, null);
         profName.setCursor(Cursor.HAND);
-        profName.setOnMouseClicked(event -> goTo(profileEvent, "profile", "Profile"));
+        profName.setOnMouseClicked(event -> goTo(profileEvent, "userProfile", "User Profile"));
 
         ActionEvent userNameAction = new ActionEvent(userName, null);
         userName.setCursor(Cursor.HAND);
-        userName.setOnMouseClicked(event -> goTo(userNameAction, "profile", "Profile"));
+        userName.setOnMouseClicked(event -> goTo(userNameAction, "userProfile", "User Profile"));
     }
 
     private void clickOn(){
