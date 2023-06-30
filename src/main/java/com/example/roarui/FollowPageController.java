@@ -40,7 +40,7 @@ public class FollowPageController extends AppController {
         initialUpperAnchor(upperAnchor);
         clickOn();
         logOutPageAction();
-        backBut.setOnAction(event -> goTo(event, "profile", "Profile"));
+        backButtonSetOnAction();
         homeBut.setOnAction(event -> goTo(event, "app", "Home"));
         profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
         scrollFollowers();
@@ -197,5 +197,13 @@ public class FollowPageController extends AppController {
         }
         else
             followingBut.fireEvent(syntheticMouseEvent);
+    }
+
+    private void backButtonSetOnAction() {
+        if (isUserProfile) {
+            backBut.setOnAction(event -> goTo(event, "userProfile", "User Profile"));
+        }
+        else
+            backBut.setOnAction(event -> goTo(event, "profile", "Profile"));
     }
 }
