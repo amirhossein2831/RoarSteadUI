@@ -1,5 +1,6 @@
 package com.example.roarui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -100,6 +101,7 @@ public class FollowPageController extends AppController {
         });
         button.setLayoutX(576);
         button.setLayoutY(13);
+        button.setCursor(Cursor.HAND);
 
 
         Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/l4.png")).openStream());
@@ -129,30 +131,41 @@ public class FollowPageController extends AppController {
                 "    -fx-border-color: black;" +
                 "    -fx-border-radius: 10px;");
 
-        AnchorPane.setTopAnchor(profName, 5.0); // Set the top anchor to 10 pixels
-        AnchorPane.setLeftAnchor(profName, 80.0); // Set the left anchor to 10 pixels
+        AnchorPane.setTopAnchor(profName, 5.0);
+        AnchorPane.setLeftAnchor(profName, 80.0);
         AnchorPane.setTopAnchor(userName,27.0);
         AnchorPane.setLeftAnchor(userName,82.0);
         AnchorPane.setLeftAnchor(textArea, 72.0);
         AnchorPane.setTopAnchor(textArea,49.0);
 
         BorderStroke borderStroke = new BorderStroke(
-                Color.WHITE,                       // Border color
-                BorderStrokeStyle.SOLID,           // Border style
-                CornerRadii.EMPTY,                 // Border corner radii
-                new BorderWidths(.5, 0, 0, 0)       // Border widths (top, right, bottom, left)
+                Color.WHITE,
+                BorderStrokeStyle.SOLID,
+                CornerRadii.EMPTY,
+                new BorderWidths(.5, 0, 0, 0)
         );
         Border border = new Border(borderStroke);
-        image.setCursor(Cursor.HAND);
-        button.setCursor(Cursor.HAND);
-        profName.setCursor(Cursor.HAND);
-        userName.setCursor(Cursor.HAND);
+        setActionForProfile(image,profName,userName);
         pane.getChildren().addAll(button,image,profName,userName,textArea);
         pane.setPrefHeight(70);
         pane.setBorder(border);
 
         VBox.setVgrow(anchorPane, javafx.scene.layout.Priority.ALWAYS);
         boxToAdd.getChildren().add(pane);
+    }
+
+    private void setActionForProfile(ImageView image, Label profName, Label userName) {
+        ActionEvent imageEvent = new ActionEvent(image, null);
+        image.setCursor(Cursor.HAND);
+        image.setOnMouseClicked(event -> goTo(imageEvent,"profile","UserProfile"));
+
+        ActionEvent profileEvent = new ActionEvent(profName, null);
+        profName.setCursor(Cursor.HAND);
+        profName.setOnMouseClicked(event -> goTo(profileEvent, "profile", "Profile"));
+
+        ActionEvent userNameAction = new ActionEvent(userName, null);
+        userName.setCursor(Cursor.HAND);
+        userName.setOnMouseClicked(event -> goTo(userNameAction, "profile", "Profile"));
     }
 
     private void clickOn(){

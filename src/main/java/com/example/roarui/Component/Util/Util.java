@@ -39,7 +39,6 @@ public class Util {
         stage.centerOnScreen();
         stage.show();
     }
-
     public static boolean containsVBox(AnchorPane anchorPane) {
         for (javafx.scene.Node node : anchorPane.getChildren()) {
             if (node instanceof VBox) {
