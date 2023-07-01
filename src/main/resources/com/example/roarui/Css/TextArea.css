@@ -5,6 +5,7 @@
     -fx-background-color: black;
     -fx-border-color: black;
     -fx-border-radius: 10px;
+    -fx-prompt-text-fill: gray;
 }
 .editTextArea {
     -fx-text-fill: white;
