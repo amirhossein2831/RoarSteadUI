@@ -165,14 +165,14 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <Button fx:id="editProfBut" layoutX="583.0" layoutY="240.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: black; -fx-background-radius: 15px; -fx-border-color: white; -fx-border-radius: 15px; -fx-border-image-width: .3;" stylesheets="@../Css/Button.css" text="Edit profile" textFill="WHITE">
+                        <Button fx:id="editProfBut" layoutX="583.0" layoutY="240.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: black; -fx-background-radius: 15px; -fx-border-color: white; -fx-border-radius: 15px; -fx-border-width: .3;" stylesheets="@../Css/Button.css" text="Edit profile" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="middleAnchor" prefHeight="192.0" prefWidth="721.0">
+                  <AnchorPane fx:id="middleAnchor" prefHeight="284.0" prefWidth="721.0">
                      <children>
                         <Label layoutX="20.0" layoutY="1.0" prefHeight="26.0" prefWidth="382.0" text="profileName" textFill="#fcfcfc">
                            <font>
@@ -195,7 +195,7 @@
                               <Cursor fx:constant="NONE" />
                            </cursor>
                         </TextArea>
-                        <Button fx:id="roarBut" layoutX="52.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#roarAction" style="-fx-background-color: black;" text="Roar" textFill="WHITE">
+                        <Button fx:id="roarBut" layoutX="52.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#roarAction" style="-fx-background-color: black;" text="Roar" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -203,7 +203,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="repliesBut" layoutX="170.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#repliesAction" style="-fx-background-color: black;" text="Replies" textFill="WHITE">
+                        <Button fx:id="repliesBut" layoutX="170.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#repliesAction" style="-fx-background-color: black;" text="Replies" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -211,7 +211,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="likesBut" layoutX="610.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#likesAction" style="-fx-background-color: black;" text="Likes" textFill="WHITE">
+                        <Button fx:id="likesBut" layoutX="610.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#likesAction" style="-fx-background-color: black;" text="Likes" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -219,7 +219,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="mediaBut" layoutX="476.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#mediaAction" style="-fx-background-color: black;" text="Media" textFill="WHITE">
+                        <Button fx:id="mediaBut" layoutX="476.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#mediaAction" style="-fx-background-color: black;" text="Media" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -227,7 +227,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="highlightBut" layoutX="317.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#highlightAction" style="-fx-background-color: black;" text="Highlight" textFill="WHITE">
+                        <Button fx:id="highlightBut" layoutX="317.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#highlightAction" style="-fx-background-color: black;" text="Highlight" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
