@@ -1,17 +1,23 @@
 package com.example.roarui.Component.Util;
 
 import com.example.roarui.Component.Alert.Alert;
+import com.example.roarui.EditProfileController;
 import com.example.roarui.Login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 
 public class Util {
@@ -104,6 +110,28 @@ public class Util {
         try {
             String browserPath = System.getProperty("os.name").toLowerCase().contains("win") ? "cmd /c start" : "xdg-open";
             Runtime.getRuntime().exec(browserPath + " " + url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void openGoTo(Button openButton, String path, String title) {
+        try {
+                FXMLLoader loader = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
+            Parent frontRoot = loader.load();
+            EditProfileController frontController = loader.getController();
+
+            Stage backStage = (Stage) openButton.getScene().getWindow();
+            backStage.getScene().getRoot().setEffect(new GaussianBlur(10)); // Apply blur effect to back stage
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(frontRoot));
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initOwner(openButton.getScene().getWindow());
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle(title);
+            stage.show();
+
+            frontController.setBackScreenDisabled(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
