@@ -63,10 +63,10 @@ public class UserProfileController extends AppController{
     }
 
     protected void initial(boolean isUserProf) {
+        initialSevenMainButton();
         initialUpperAnchor(middleAnchor);
         logOutPageAction();
         createProfileCircle();
-        homeBut.setOnAction(event -> goTo(event, "app", "HOME"));
         //Todo should get the link from the server
         headerImageView.setOnMouseClicked(event -> openLink("/home/amirhossein/IdeaProjects/RoarSteadUI/src/main/resources/com/example/roarui/image/istockphoto-178488809-612x612.jpg"));
         profImageView.setOnMouseClicked(event -> openLink("/home/amirhossein/IdeaProjects/RoarSteadUI/src/main/resources/com/example/roarui/image/l4.png"));

@@ -59,7 +59,19 @@ public class AppController implements Initializable {
     private Button profileImageBut;
 
     @FXML
+    protected Button exploreBut;
+
+    @FXML
+    protected Button notificationBut;
+
+    @FXML
+    protected Button messageBut;
+
+    @FXML
     protected AnchorPane logPage;
+
+    @FXML
+    protected Button settingBut;
 
     protected boolean isForYou;
 
@@ -77,13 +89,22 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initialSevenMainButton();
         initialUpperAnchor(upperAnchor);
         logOutPageAction();
-        profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
         profileImageBut.setOnAction(event -> goTo(event,"profile","Profile"));
         forYouBut.fireEvent(syntheticMouseEvent);
         scrollFollowers();
         scrollFollowing();
+    }
+
+    protected void initialSevenMainButton() {
+        homeBut.setOnAction(event -> goTo(event, "app", "Home"));
+        exploreBut.setOnAction(event -> goTo(event, "explore", "Explore"));
+        notificationBut.setOnAction(event -> goTo(event, "notification", "Notification"));
+        messageBut.setOnAction(event -> goTo(event, "message", "Messages"));
+        profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
+        settingBut.setOnAction(event -> goTo(event, "setting", "Setting"));
     }
 
     protected void initialLogOutButton() {

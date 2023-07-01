@@ -1,4 +1,12 @@
 package com.example.roarui;
 
-public class NotificationController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class NotificationController extends AppController{
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initialSevenMainButton();
+        logOutPageAction();
+    }
 }

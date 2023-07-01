@@ -37,6 +37,7 @@ public class FollowPageController extends AppController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initialSevenMainButton();
         initialUpperAnchor(upperAnchor);
         clickOn();
         logOutPageAction();

@@ -1,4 +1,12 @@
 package com.example.roarui;
 
-public class MessageController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MessageController extends AppController{
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initialSevenMainButton();
+        logOutPageAction();
+    }
 }

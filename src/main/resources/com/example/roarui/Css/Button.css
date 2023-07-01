@@ -97,7 +97,7 @@
     -fx-text-fill: #eee2ba !important;
     -fx-font-size: 22px;
 }
-#notifBut:hover{
+#notificationBut:hover{
     -fx-text-fill: #eee2ba !important;
     -fx-font-size: 22px;
 }
