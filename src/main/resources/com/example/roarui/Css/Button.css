@@ -70,6 +70,18 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
+.camera{
+    -fx-background-image: url('../image/cr.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+.profCamera{
+    -fx-background-image: url('../image/cr.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
 #RoarBut:hover{
     -fx-background-color:#F1D017 !important;
     -fx-font-size: 35px;
@@ -138,6 +150,14 @@
 }
 #save:hover{
     -fx-background-color: #686464 !important;
+}
+#cancleImage:hover {
+    -fx-opacity: .7;
+}
+#uploadImageHeader:hover {
+    -fx-opacity: .7;
+}#uploadImageProfile:hover {
+    -fx-opacity: .9;
 }
 
 

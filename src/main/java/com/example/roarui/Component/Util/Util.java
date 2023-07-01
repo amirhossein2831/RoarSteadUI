@@ -11,24 +11,31 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Util {
-    public static final String PRIVACY_LINK = "http://localhost:63342/Login/com/login/Privacy.html?_ijt=384tffke4ep5ncnnn3ru2hudqg&_ij_reload=RELOAD_ON_SAVE";
+    public static final String PRIVACY_LINK = "http://localhost:63342/RoarSteadUI/src/main/resources/com/example/roarui/Html/Privacy.html?_ijt=6oqdgandgn7dahcc78lf530sd5&_ij_reload=RELOAD_ON_SAVE";
 
-    public static final String TERM_LINK = "http://localhost:63342/Login/com/login/Term.html?_ijt=369bt7l5cef9tmgatlsh85u3cv&_ij_reload=RELOAD_ON_SAVE";
+    public static final String TERM_LINK = "http://localhost:63342/RoarSteadUI/src/main/resources/com/example/roarui/Html/Term.html?_ijt=6oqdgandgn7dahcc78lf530sd5&_ij_reload=RELOAD_ON_SAVE";
 
     public static final MouseEvent syntheticMouseEvent = new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0,
             null, 0, false, false, false, false, false, false, false, false, false, false, null);
 
     public static final Alert WARNING_ALERT = logOutAlert();
+
+    public static  boolean IS_DEFAULT_IMAGE;
+    public static  boolean IS_DEFAULT_IMAGE_SAVE;
     public static final Alert UNFOLLOW_ALERT = unFollowAlert();
     public static boolean isFollowers;
     public static boolean isUserProfile;
@@ -134,6 +141,21 @@ public class Util {
             frontController.setBackScreenDisabled(true);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void closeDefaultHeader() {
+        if (IS_DEFAULT_IMAGE) {
+            IS_DEFAULT_IMAGE = false;
+        }
+    }
+    public static void openFileChooser(ImageView imageView) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            Image image = new Image(selectedFile.toURI().toString());
+            imageView.setImage(image);
         }
     }
 }
