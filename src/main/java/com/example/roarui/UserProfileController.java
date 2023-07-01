@@ -1,7 +1,6 @@
 package com.example.roarui;
 
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Bloom;
