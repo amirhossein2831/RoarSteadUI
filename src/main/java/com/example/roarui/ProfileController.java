@@ -9,16 +9,22 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.example.roarui.Component.Util.Util.openGoTo;
+
 public class ProfileController extends UserProfileController {
 
     @FXML
     protected Button highlightBut;
+
+    @FXML
+    private Button editProfBut;
 
     protected VBox highlightBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initial(false);
+        editProfBut.setOnAction(event -> openGoTo( editProfBut, "editProfile", "Edit profile"));
     }
 
     @FXML
