@@ -6,3 +6,12 @@
     -fx-border-color: black;
     -fx-border-radius: 10px;
 }
+.editTextArea {
+    -fx-text-fill: white;
+    -fx-font-style: italic;
+    -fx-background-radius: 5px;
+    -fx-control-inner-background: black;
+    -fx-background-color: black;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+}
