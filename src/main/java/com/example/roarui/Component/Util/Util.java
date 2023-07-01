@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -24,6 +25,7 @@ import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class Util {
     public static final String PRIVACY_LINK = "http://localhost:63342/RoarSteadUI/src/main/resources/com/example/roarui/Html/Privacy.html?_ijt=6oqdgandgn7dahcc78lf530sd5&_ij_reload=RELOAD_ON_SAVE";
@@ -161,5 +163,22 @@ public class Util {
             Image image = new Image(selectedFile.toURI().toString());
             imageView.setImage(image);
         }
+    }
+    public static void openMultiFileChooser(List<Image> images,HBox hbox) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            Image image = new Image(selectedFile.toURI().toString());
+            images.add(image);
+            addImageToHBox(image,hbox);
+        }
+    }
+
+    public static void addImageToHBox(Image image, HBox hBox) {
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(400);
+        imageView.setFitHeight(200);
+        hBox.getChildren().add(imageView);
     }
 }
