@@ -63,9 +63,10 @@ public class EditProfileController extends ProfileController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(IS_DEFAULT_IMAGE_SAVE);
-        System.out.println(IS_DEFAULT_IMAGE);
         createProfileCircle();
+        uploadImageHeader.setOnAction(event -> openFileChooser(headerImage));
+        uploadImageProfile.setOnAction(event -> openFileChooser(profileImage));
+
         try {
             super.setDefaultProfile(headerImage);
             cancleImage.setOnAction(event -> {
@@ -130,5 +131,6 @@ public class EditProfileController extends ProfileController {
             IS_DEFAULT_IMAGE_SAVE = true;
             closeFront(event);
         }
+        //TODO go and save the image in date base to open them in profile and set them
     }
 }
