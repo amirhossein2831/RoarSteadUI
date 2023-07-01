@@ -24,31 +24,15 @@ public class RoarController implements Initializable {
     private Button closeBut;
 
     @FXML
-    private ScrollPane scrollPane;
-
-    @FXML
     private HBox hbox;
-
-    @FXML
-    private AnchorPane parentPane;
-
-    @FXML
-    private AnchorPane buttomPane;
 
     @FXML
     private ImageView profView;
 
     @FXML
-    private VBox vBox;
-
-    @FXML
     private Button uploadFile;
 
     private List<Image> images = new ArrayList<>();
-
-    private int currentIndex = 0;
-
-    private ImageView currentImageView;
 
     private boolean backScreenDisabled;
 
@@ -57,21 +41,22 @@ public class RoarController implements Initializable {
         createProfileCircle();
         closeBut.setOnAction(event -> closeFrontScreen());
         createImage();
-
     }
+
     public void setBackScreenDisabled(boolean disabled) {
         backScreenDisabled = disabled;
     }
+
     private void closeFrontScreen() {
         Stage frontStage = (Stage) closeBut.getScene().getWindow();
         frontStage.close();
-
         if (backScreenDisabled) {
             Stage backStage = (Stage) ((Stage) closeBut.getScene().getWindow()).getOwner();
             backStage.getScene().getRoot().setEffect(null); // Remove blur effect from back stage
             backStage.getScene().getRoot().setDisable(false);
         }
     }
+
     protected void createProfileCircle() {
         Circle circle = new Circle(25, 25, 25);
         profView.setClip(circle);
@@ -84,7 +69,5 @@ public class RoarController implements Initializable {
         anchorPane.setPrefHeight(200);
         anchorPane.setPrefWidth(1);
         hbox.getChildren().add(anchorPane);
-//        scrollPane.setOnScroll(event -> handleScroll(event.getDeltaX()));
-//        vBox.getChildren().add(scrollPane);
     }
 }

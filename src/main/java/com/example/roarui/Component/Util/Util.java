@@ -22,7 +22,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -38,10 +37,15 @@ public class Util {
     public static final Alert WARNING_ALERT = logOutAlert();
 
     public static  boolean IS_DEFAULT_IMAGE;
+
     public static  boolean IS_DEFAULT_IMAGE_SAVE;
+
     public static final Alert UNFOLLOW_ALERT = unFollowAlert();
+
     public static boolean isFollowers;
+
     public static boolean isUserProfile;
+
     public static void goTo(ActionEvent event, String path, String title) {
         Parent root = null;
         FXMLLoader load = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
@@ -89,6 +93,32 @@ public class Util {
         stage.show();
     }
 
+    public static void openGoTo(Button openButton, String path,String controllerType) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
+            Parent frontRoot = loader.load();
+            if (controllerType.equals("EditProfileController")) {
+                EditProfileController controller = loader.getController();
+                controller.setBackScreenDisabled(true);
+            } else if (controllerType.equals("RoarController")) {
+                RoarController controller = loader.getController();
+                controller.setBackScreenDisabled(true);
+            }
+            Stage backStage = (Stage) openButton.getScene().getWindow();
+            backStage.getScene().getRoot().setEffect(new GaussianBlur(10));
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(frontRoot));
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initOwner(openButton.getScene().getWindow());
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static Alert logOutAlert() {
         Alert alert = new Alert(javafx.scene.control.Alert.AlertType.WARNING, "Are you sure",
                 ButtonType.YES, ButtonType.CLOSE);
@@ -116,6 +146,12 @@ public class Util {
         currentStage.close();
     }
 
+    public static void closeDefaultHeader() {
+        if (IS_DEFAULT_IMAGE) {
+            IS_DEFAULT_IMAGE = false;
+        }
+    }
+
     public static void openLink(String url) {
         try {
             String browserPath = System.getProperty("os.name").toLowerCase().contains("win") ? "cmd /c start" : "xdg-open";
@@ -124,37 +160,7 @@ public class Util {
             e.printStackTrace();
         }
     }
-    public static void openGoTo(Button openButton, String path,String controllerType) {
-        try {
-                FXMLLoader loader = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
-            Parent frontRoot = loader.load();
-            if (controllerType.equals("EditProfileController")) {
-                EditProfileController controller = loader.getController();
-                controller.setBackScreenDisabled(true);
-            } else if (controllerType.equals("RoarController")) {
-                RoarController controller = loader.getController();
-                controller.setBackScreenDisabled(true);
-            }
-            Stage backStage = (Stage) openButton.getScene().getWindow();
-            backStage.getScene().getRoot().setEffect(new GaussianBlur(10)); // Apply blur effect to back stage
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(frontRoot));
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.initOwner(openButton.getScene().getWindow());
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void closeDefaultHeader() {
-        if (IS_DEFAULT_IMAGE) {
-            IS_DEFAULT_IMAGE = false;
-        }
-    }
     public static void openFileChooser(ImageView imageView) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
@@ -164,6 +170,7 @@ public class Util {
             imageView.setImage(image);
         }
     }
+
     public static void openMultiFileChooser(List<Image> images,HBox hbox) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
@@ -171,14 +178,10 @@ public class Util {
         if (selectedFile != null) {
             Image image = new Image(selectedFile.toURI().toString());
             images.add(image);
-            addImageToHBox(image,hbox);
+            ImageView imageView = new ImageView(image);
+            imageView.setFitWidth(400);
+            imageView.setFitHeight(200);
+            hbox.getChildren().add(imageView);
         }
-    }
-
-    public static void addImageToHBox(Image image, HBox hBox) {
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(400);
-        imageView.setFitHeight(200);
-        hBox.getChildren().add(imageView);
     }
 }

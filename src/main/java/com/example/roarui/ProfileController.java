@@ -27,6 +27,7 @@ public class ProfileController extends UserProfileController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        RoarBut.setOnAction(event -> openGoTo(RoarBut, "roar", "RoarController"));
         profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
         initial(false);
         editProfBut.setOnAction(event -> openGoTo( editProfBut, "editProfile", "EditProfileController"));
