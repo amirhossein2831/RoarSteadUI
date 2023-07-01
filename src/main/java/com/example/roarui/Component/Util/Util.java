@@ -36,11 +36,14 @@ public class Util {
 
     public static final Alert WARNING_ALERT = logOutAlert();
 
+    public static final Alert UNFOLLOW_ALERT = unFollowAlert();
+
+    public static final Alert CONFIRM_ROAR = confirmRoarAlert();
+
     public static  boolean IS_DEFAULT_IMAGE;
 
     public static  boolean IS_DEFAULT_IMAGE_SAVE;
 
-    public static final Alert UNFOLLOW_ALERT = unFollowAlert();
 
     public static boolean isFollowers;
 
@@ -133,6 +136,14 @@ public class Util {
         alert.setHeaderText("Are you sure to UnFollow?");
         alert.setContentText("Their Roars will no longer show up in your home timeline." +
                 " You can still view their profile, unless their Roars are protected. ");
+        return alert;
+    }
+
+    private static Alert confirmRoarAlert() {
+        Alert alert = new Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION, "Roared",
+                ButtonType.OK);
+        alert.setHeaderText("The Roar was successful");
+        alert.setContentText("you Roar has successful send to you followers");
         return alert;
     }
 

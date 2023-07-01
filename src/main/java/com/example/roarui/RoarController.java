@@ -32,6 +32,9 @@ public class RoarController implements Initializable {
     @FXML
     private Button uploadFile;
 
+    @FXML
+    private Button roar;
+
     private List<Image> images = new ArrayList<>();
 
     private boolean backScreenDisabled;
@@ -41,6 +44,7 @@ public class RoarController implements Initializable {
         createProfileCircle();
         closeBut.setOnAction(event -> closeFrontScreen());
         createImage();
+        roar.setOnAction(event -> );
     }
 
     public void setBackScreenDisabled(boolean disabled) {
