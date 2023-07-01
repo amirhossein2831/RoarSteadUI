@@ -25,6 +25,7 @@ public class Util {
     public static final Alert WARNING_ALERT = logOutAlert();
     public static final Alert UNFOLLOW_ALERT = unFollowAlert();
     public static boolean isFollowers;
+    public static boolean isUserProfile;
     public static void goTo(ActionEvent event, String path, String title) {
         Parent root = null;
         FXMLLoader load = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));

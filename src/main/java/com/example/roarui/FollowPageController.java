@@ -40,7 +40,7 @@ public class FollowPageController extends AppController {
         initialUpperAnchor(upperAnchor);
         clickOn();
         logOutPageAction();
-        backBut.setOnAction(event -> goTo(event, "profile", "Profile"));
+        backButtonSetOnAction();
         homeBut.setOnAction(event -> goTo(event, "app", "Home"));
         profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
         scrollFollowers();
@@ -76,62 +76,9 @@ public class FollowPageController extends AppController {
         pane.setStyle("-fx-background-color: black;");
         //TODO check the person isFollowed already if yse text of button set to Following else set to Follow
         Button button = new Button(buttonText);
-        StringBuilder strButton = new StringBuilder(button.getText());
-        button.setStyle("-fx-background-color: black;" +
-                        "-fx-background-radius: 15px;" +
-                        "-fx-border-color: white;" +
-                        "-fx-border-radius: 15px;" +
-                        "-fx-text-fill: white;" +
-                        "-fx-font-size: 15px");
-        button.hoverProperty().addListener((observableValue, aBoolean, newValue) -> {
-            if (newValue) {
-                //TODO should handle that the person is followed or not
-                if (strButton.toString().equals("Following")) {
-                    button.setText("UnFollow");
-                    button.setStyle("-fx-border-color: red;" +
-                            "-fx-text-fill: red;" +
-                            "-fx-background-color: black;" +
-                            "-fx-background-radius: 15px;" +
-                            "-fx-border-radius: 15px;" +
-                            "-fx-font-size: 15px");
-                } else if (strButton.toString().equals("Follow")) {
-                    button.setStyle("-fx-background-color: black;" +
-                            "-fx-font-weight: bold;" +
-                            "-fx-background-radius: 15px;" +
-                            "-fx-border-color: white;" +
-                            "-fx-border-radius: 15px;" +
-                            "-fx-text-fill: white;" +
-                            "-fx-font-size: 15px");
-                }
-            } else {
-                button.setText(strButton.toString());
-                button.setStyle("-fx-background-color: black;" +
-                        "-fx-background-radius: 15px;" +
-                        "-fx-border-color: white;" +
-                        "-fx-border-radius: 15px;" +
-                        "-fx-text-fill: white;" +
-                        "-fx-font-size: 15px");
-            }
-        });
+        initialFollowingFollowersBut(button);
         button.setLayoutX(576);
         button.setLayoutY(13);
-        button.setCursor(Cursor.HAND);
-        button.setOnAction(event -> {
-            if (strButton.toString().equals("Following")) {
-                UNFOLLOW_ALERT.handleCustomButtonAction();
-                //TODO the person should be unfollowed
-                if (UNFOLLOW_ALERT.isYes()) {
-                    button.setText("Follow");
-                    strButton.delete(0,strButton.length());
-                    strButton.append("Follow");
-                }
-            } else if (strButton.toString().equals("Follow")) {
-                //TODO the person should be followed
-                button.setText("Following");
-                strButton.delete(0,strButton.length());
-                strButton.append("Following");
-            }
-        });
 
 
         Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/l4.png")).openStream());
@@ -180,15 +127,15 @@ public class FollowPageController extends AppController {
     private void setActionForProfile(ImageView image, Label profName, Label userName) {
         ActionEvent imageEvent = new ActionEvent(image, null);
         image.setCursor(Cursor.HAND);
-        image.setOnMouseClicked(event -> goTo(imageEvent,"profile","UserProfile"));
+        image.setOnMouseClicked(event -> goTo(imageEvent,"userProfile","User Profile"));
 
         ActionEvent profileEvent = new ActionEvent(profName, null);
         profName.setCursor(Cursor.HAND);
-        profName.setOnMouseClicked(event -> goTo(profileEvent, "profile", "Profile"));
+        profName.setOnMouseClicked(event -> goTo(profileEvent, "userProfile", "User Profile"));
 
         ActionEvent userNameAction = new ActionEvent(userName, null);
         userName.setCursor(Cursor.HAND);
-        userName.setOnMouseClicked(event -> goTo(userNameAction, "profile", "Profile"));
+        userName.setOnMouseClicked(event -> goTo(userNameAction, "userProfile", "User Profile"));
     }
 
     private void clickOn(){
@@ -197,5 +144,13 @@ public class FollowPageController extends AppController {
         }
         else
             followingBut.fireEvent(syntheticMouseEvent);
+    }
+
+    private void backButtonSetOnAction() {
+        if (isUserProfile) {
+            backBut.setOnAction(event -> goTo(event, "userProfile", "User Profile"));
+        }
+        else
+            backBut.setOnAction(event -> goTo(event, "profile", "Profile"));
     }
 }

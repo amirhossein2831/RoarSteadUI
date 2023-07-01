@@ -31,6 +31,15 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
+.direct {
+    -fx-background-image: url('../image/105r.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+#direct:hover {
+    -fx-background-color: #111111 !important;
+}
 .bell{
     -fx-background-image: url('../image/104r.png');
     -fx-background-size: cover;
