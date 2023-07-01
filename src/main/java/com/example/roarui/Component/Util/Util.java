@@ -21,9 +21,9 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class Util {
-    public static final String PRIVACY_LINK = "http://localhost:63342/Login/com/login/Privacy.html?_ijt=384tffke4ep5ncnnn3ru2hudqg&_ij_reload=RELOAD_ON_SAVE";
+    public static final String PRIVACY_LINK = "http://localhost:63342/RoarSteadUI/src/main/resources/com/example/roarui/Html/Privacy.html?_ijt=6oqdgandgn7dahcc78lf530sd5&_ij_reload=RELOAD_ON_SAVE";
 
-    public static final String TERM_LINK = "http://localhost:63342/Login/com/login/Term.html?_ijt=369bt7l5cef9tmgatlsh85u3cv&_ij_reload=RELOAD_ON_SAVE";
+    public static final String TERM_LINK = "http://localhost:63342/RoarSteadUI/src/main/resources/com/example/roarui/Html/Term.html?_ijt=6oqdgandgn7dahcc78lf530sd5&_ij_reload=RELOAD_ON_SAVE";
 
     public static final MouseEvent syntheticMouseEvent = new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0,
             null, 0, false, false, false, false, false, false, false, false, false, false, null);
