@@ -51,7 +51,10 @@
       </VBox>
       <AnchorPane fx:id="buttomPane" layoutX="2.0" layoutY="394.0" prefHeight="60.0" prefWidth="600.0" style="-fx-background-color: black;">
          <children>
-            <Button fx:id="uploadFile" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="44.0" style="-fx-background-color: black;" styleClass="uploadFile" stylesheets="@../Css/Button.css" />
+            <Button fx:id="uploadFile" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="44.0" style="-fx-background-color: black;" styleClass="uploadFile" stylesheets="@../Css/Button.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Button fx:id="roar" layoutX="502.0" layoutY="19.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="84.0" style="-fx-background-color: orange; -fx-background-radius: 15px;" stylesheets="@../Css/Button.css" text="Roar">
                <font>
                   <Font size="18.0" />

@@ -93,7 +93,7 @@
     -fx-font-family: Mandali;
     -fx-cursor: hand;
 }
-#Roar:hover{
+#roar:hover{
     -fx-background-color:#F1D017 !important;
     -fx-font-size: 20px;
     -fx-cursor: hand;
