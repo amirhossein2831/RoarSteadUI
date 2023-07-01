@@ -8,7 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -38,6 +37,14 @@ public class ProfileController extends UserProfileController {
             }
     }
 
+    protected void setDefaultProfile(ImageView imageView) throws IOException {
+        //TODO need to change on RealProfile
+        if (IS_DEFAULT_IMAGE && IS_DEFAULT_IMAGE_SAVE) {
+            Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/defHeaderProf.png")).openStream());
+            imageView.setImage(imageHolder);
+        }
+    }
+
     @FXML
     void highlightAction(MouseEvent event) {
         if (highlightBox == null) {
@@ -62,12 +69,5 @@ public class ProfileController extends UserProfileController {
         highlightBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
         highlightBut.setEffect(null);
         super.showBox(event,vbox);
-    }
-    protected void setDefaultProfile(ImageView imageView) throws IOException {
-        if (IS_DEFAULT_IMAGE && IS_DEFAULT_IMAGE_SAVE) {
-            Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/defHeaderProf.png")).openStream());
-            imageView.setImage(imageHolder);
-            //TODO need to change unRealProfile
-        }
     }
 }

@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -66,7 +65,7 @@ public class EditProfileController extends ProfileController {
         createProfileCircle();
         uploadImageHeader.setOnAction(event -> openFileChooser(headerImage));
         uploadImageProfile.setOnAction(event -> openFileChooser(profileImage));
-
+        //TODO should change this setDefaultProfile and handle it with DB
         try {
             super.setDefaultProfile(headerImage);
             cancleImage.setOnAction(event -> {
@@ -81,13 +80,11 @@ public class EditProfileController extends ProfileController {
         }
         //TODO need to  set the text area field with the name and bio of user
         save.setOnAction(event -> save(event));
-
     }
 
     public void setBackScreenDisabled(boolean disabled) {
         backScreenDisabled = disabled;
     }
-
     @FXML
     private void closeFrontScreen(ActionEvent event) {
         closeDefaultHeader();
@@ -99,7 +96,7 @@ public class EditProfileController extends ProfileController {
         frontStage.close();
         if (backScreenDisabled) {
             Stage backStage = (Stage) ((Stage) closeButton.getScene().getWindow()).getOwner();
-            backStage.getScene().getRoot().setEffect(null); // Remove blur effect from back stage
+            backStage.getScene().getRoot().setEffect(null);
             backStage.getScene().getRoot().setDisable(false);
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFile/profile.fxml"));
@@ -124,8 +121,9 @@ public class EditProfileController extends ProfileController {
         IS_DEFAULT_IMAGE = true;
         Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/defHeaderProf.png")).openStream());
         headerImage.setImage(imageHolder);
-        //TODO need to change unRealProfile
+        //TODO need to change RealProfile Image
     }
+
     private void save(ActionEvent event) {
         if (IS_DEFAULT_IMAGE) {
             IS_DEFAULT_IMAGE_SAVE = true;
