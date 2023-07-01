@@ -29,6 +29,9 @@ public class Util {
             null, 0, false, false, false, false, false, false, false, false, false, false, null);
 
     public static final Alert WARNING_ALERT = logOutAlert();
+
+    public static  boolean IS_DEFAULT_IMAGE;
+    public static  boolean IS_DEFAULT_IMAGE_SAVE;
     public static final Alert UNFOLLOW_ALERT = unFollowAlert();
     public static boolean isFollowers;
     public static boolean isUserProfile;
@@ -134,6 +137,12 @@ public class Util {
             frontController.setBackScreenDisabled(true);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void closeDefaultHeader() {
+        if (IS_DEFAULT_IMAGE) {
+            IS_DEFAULT_IMAGE = false;
         }
     }
 }
