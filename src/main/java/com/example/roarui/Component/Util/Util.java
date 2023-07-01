@@ -3,6 +3,7 @@ package com.example.roarui.Component.Util;
 import com.example.roarui.Component.Alert.Alert;
 import com.example.roarui.EditProfileController;
 import com.example.roarui.Login;
+import com.example.roarui.RoarController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -121,12 +122,17 @@ public class Util {
             e.printStackTrace();
         }
     }
-    public static void openGoTo(Button openButton, String path, String title) {
+    public static void openGoTo(Button openButton, String path,String controllerType) {
         try {
                 FXMLLoader loader = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
             Parent frontRoot = loader.load();
-            EditProfileController frontController = loader.getController();
-
+            if (controllerType.equals("EditProfileController")) {
+                EditProfileController controller = loader.getController();
+                controller.setBackScreenDisabled(true);
+            } else if (controllerType.equals("RoarController")) {
+                RoarController controller = loader.getController();
+                controller.setBackScreenDisabled(true);
+            }
             Stage backStage = (Stage) openButton.getScene().getWindow();
             backStage.getScene().getRoot().setEffect(new GaussianBlur(10)); // Apply blur effect to back stage
 
@@ -135,10 +141,8 @@ public class Util {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.initOwner(openButton.getScene().getWindow());
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle(title);
             stage.show();
 
-            frontController.setBackScreenDisabled(true);
         } catch (IOException e) {
             e.printStackTrace();
         }

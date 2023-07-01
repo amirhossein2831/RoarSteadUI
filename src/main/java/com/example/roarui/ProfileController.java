@@ -29,7 +29,7 @@ public class ProfileController extends UserProfileController {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         profileBut.setOnAction(event -> goTo(event, "profile", "Profile"));
         initial(false);
-        editProfBut.setOnAction(event -> openGoTo( editProfBut, "editProfile", "Edit profile"));
+        editProfBut.setOnAction(event -> openGoTo( editProfBut, "editProfile", "EditProfileController"));
             try {
                 setDefaultProfile(headerImageView);
             } catch (IOException e) {
