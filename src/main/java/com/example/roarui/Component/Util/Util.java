@@ -2,8 +2,7 @@ package com.example.roarui.Component.Util;
 
 import com.example.roarui.Component.Alert.Alert;
 import com.example.roarui.EditProfileController;
-import com.example.roarui.Login;
-import com.example.roarui.RoarController;
+import com.example.roarui.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -51,7 +50,7 @@ public class Util {
 
     public static void goTo(ActionEvent event, String path, String title) {
         Parent root = null;
-        FXMLLoader load = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
+        FXMLLoader load = new FXMLLoader(App.class.getResource("FXMLFile/" + path + ".fxml"));
         try {
             root = load.load();
         } catch (IOException e) {
@@ -75,7 +74,7 @@ public class Util {
 
     public static void goTo(ActionEvent event, String path, String title, int width, int height) {
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(Login.class.getResource("FXMLFile/" + path + ".fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("FXMLFile/" + path + ".fxml"));
         try {
             root = loader.load();
         } catch (IOException e) {
@@ -171,7 +170,14 @@ public class Util {
             e.printStackTrace();
         }
     }
+    public static void openGoTo(Button openButton, String path, String title) {
+        try {
+                FXMLLoader loader = new FXMLLoader(App.class.getResource("FXMLFile/" + path + ".fxml"));
+            Parent frontRoot = loader.load();
+            EditProfileController frontController = loader.getController();
 
+            Stage backStage = (Stage) openButton.getScene().getWindow();
+            backStage.getScene().getRoot().setEffect(new GaussianBlur(10)); // Apply blur effect to back stage
     public static void openFileChooser(ImageView imageView) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));

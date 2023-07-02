@@ -83,7 +83,7 @@ public class FollowPageController extends AppController {
         button.setLayoutY(13);
 
 
-        Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/l4.png")).openStream());
+        Image imageHolder = new Image(Objects.requireNonNull(App.class.getResource("image/l4.png")).openStream());
         ImageView image = new ImageView(imageHolder);
         image.setFitWidth(60);
         image.setFitHeight(60);
