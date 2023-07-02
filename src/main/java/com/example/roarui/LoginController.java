@@ -3,6 +3,7 @@ package com.example.roarui;
 import com.example.roarui.Component.Util.Util;
 import com.example.roarui.Models.LoginForm;
 import com.example.roarui.Models.User;
+import com.google.gson.JsonObject;
 import jakarta.validation.ConstraintViolation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,7 +47,7 @@ public class LoginController implements Initializable {
         login_Button.setOnAction(actionEvent -> {
             LoginForm loginForm = new LoginForm(userName_TF.getText(), password_TF.getText());
             if(loginForm.validate()){
-               login(loginForm, actionEvent);
+               textResponse.setText(login(loginForm, actionEvent));
                return;
             }
             StringBuilder response = new StringBuilder();
@@ -58,20 +59,23 @@ public class LoginController implements Initializable {
         });
     }
 
-    private void login(LoginForm loginForm, ActionEvent actionEvent) {
+    public static String login(LoginForm loginForm, ActionEvent actionEvent) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(App.LOGIN_URI))
                 .POST(HttpRequest.BodyPublishers.ofString(App.gson().toJson(loginForm)))
                 .build();
 
         try {
-//            String jsonString = "{\"message\": {\"user\": {\"first_name\": \"Amirhossein2\", \"last_name\": \"Memool2\", \"birth_date\": \"Feb 2, 2022\", \"profile\": {\"createdAt\": \"Jul 1, 2023, 7:51:33 PM\"}, \"id\": 902, \"username\": \"amirmemool2\", \"phone\": \"09367389692\", \"email\": \"amirmemool2@gmail.com\", \"country\": {\"name\": \"Iran, Islamic Republic of Persian Gulf\", \"dial_code\": \"+98\", \"emoji\": \"🇮🇷\", \"code\": \"IR\"}}}, \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbWlybWVtb29sMiIsImlhdCI6MTY4ODI5NzY0MiwiZXhwIjoxNjkwODg5NjQyfQ.13olLaqVRzga0IlMN6mzx6UmX8sKlF8PQiad1PQeQ_s\"}, \"code\": 200}";
             HttpResponse<String> response = App.httpClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode() != 200){
+                return App.gson().fromJson(response.body(), JsonObject.class).get("message").getAsString();
+            }
             App.setUser(App.gson().fromJson(response.body(), User.class));
             goTo(actionEvent, "app", App.APP_NAME);
         } catch (Exception e) {
-            textResponse.setText("Sorry there is a problem!");
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return "Sorry there is a problem!";
         }
+        return "";
     }
 }
