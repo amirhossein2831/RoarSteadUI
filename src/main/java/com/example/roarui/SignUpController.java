@@ -1,5 +1,6 @@
 package com.example.roarui;
 
+import com.example.roarui.Component.Alert.Alert;
 import com.example.roarui.Models.LoginForm;
 import com.example.roarui.Models.User;
 import com.example.roarui.Models.UserForm;
@@ -9,10 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URI;
 import java.net.URL;
@@ -81,13 +79,12 @@ public class SignUpController implements Initializable {
         login_button.setOnAction(event -> goTo(event, "login", "Login"));
         term_button.setOnAction(event -> openLink(TERM_LINK));
         privacy_button.setOnAction(event -> openLink(PRIVACY_LINK));
-        create_button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
+        create_button.setOnAction(actionEvent -> {
+            try {
                 LocalDate selectedDate = birthDate.getValue();
                 Date birth = Date.from(selectedDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
                 UserForm form = new UserForm(userName.getText(), firstName.getText(), lastName.getText(), email.getText(), phone.getText(), password.getText(), dialCode.getText(), birth);
-                if(form.validate()){
+                if (form.validate()) {
                     signUp(form, actionEvent);
                     return;
                 }
@@ -95,8 +92,10 @@ public class SignUpController implements Initializable {
                 for (ConstraintViolation<UserForm> violation :
                         form.getViolations()) {
                     response.append(violation.getMessage() + "\n");
+                    alert(response.toString());
                 }
-                textResponse.setText(response.toString());
+            } catch (NullPointerException e ) {
+                EMPTY_FIELD.handleCustomButtonAction();
             }
         });
     }
@@ -109,13 +108,22 @@ public class SignUpController implements Initializable {
         try {
             HttpResponse<String> response = App.httpClient().send(request, HttpResponse.BodyHandlers.ofString());
             if(response.statusCode() != 200){
-                textResponse.setText(App.gson().fromJson(response.body(), JsonObject.class).get("message").getAsString());
+                alert(App.gson().fromJson(response.body(), JsonObject.class).get("message").getAsString());
                 return;
             }
-            textResponse.setText(LoginController.login(new LoginForm(form.getUsername(), form.getPassword()), actionEvent));
+            alert(LoginController.login(new LoginForm(form.getUsername(), form.getPassword()), actionEvent));
         } catch (Exception e) {
-            textResponse.setText("Sorry there is a problem!");
+            alert("Sorry there is a problem!");
             throw new RuntimeException(e);
+        }
+    }
+
+    private void alert(String response) {
+            Alert alert = new Alert(javafx.scene.control.Alert.AlertType.ERROR, "Are you sure to UnFollow?",
+                    ButtonType.OK);
+            alert.setHeaderText("ERROR ");
+            alert.setContentText(response);
+            alert.handleCustomButtonAction();
         }
     }
 }

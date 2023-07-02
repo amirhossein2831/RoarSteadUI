@@ -345,9 +345,9 @@ public class AppController implements Initializable {
         AnchorPane.setTopAnchor(scrollPane,20.0);
 
         //TODO should be delete and geet image from arg
-        Image image1 = new Image(Objects.requireNonNull(Login.class.getResource("image/defHeaderProf.png")).openStream());
-        Image image2 = new Image(Objects.requireNonNull(Login.class.getResource("image/defHeaderProf.png")).openStream());
-        Image image3 = new Image(Objects.requireNonNull(Login.class.getResource("image/defHeaderProf.png")).openStream());
+        Image image1 = new Image(Objects.requireNonNull(App.class.getResource("image/defHeaderProf.png")).openStream());
+        Image image2 = new Image(Objects.requireNonNull(App.class.getResource("image/defHeaderProf.png")).openStream());
+        Image image3 = new Image(Objects.requireNonNull(App.class.getResource("image/defHeaderProf.png")).openStream());
         images.add(image1);
         images.add(image2);
         images.add(image3);
@@ -382,7 +382,7 @@ public class AppController implements Initializable {
         pane.setBorder(border);
         pane.setStyle("-fx-background-color: black;");
         //TODO check the person isFollowed already if yse text of button set to Following else set to Follow
-        Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/l4.png")).openStream());
+        Image imageHolder = new Image(Objects.requireNonNull(App.class.getResource("image/l4.png")).openStream());
         ImageView image = new ImageView(imageHolder);
         image.setFitWidth(60);
         image.setFitHeight(60);

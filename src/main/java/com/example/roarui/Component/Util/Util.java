@@ -36,10 +36,14 @@ public class Util {
             null, 0, false, false, false, false, false, false, false, false, false, false, null);
 
     public static final Alert WARNING_ALERT = logOutAlert();
+    public static final Alert UNFOLLOW_ALERT = unFollowAlert();
+    public static final Alert CONFIRM_ROAR = confirmRoarAlert();
+
+    public static final Alert EMPTY_FIELD = emptyFieldAlert();
+
 
     public static  boolean IS_DEFAULT_IMAGE;
     public static  boolean IS_DEFAULT_IMAGE_SAVE;
-    public static final Alert UNFOLLOW_ALERT = unFollowAlert();
     public static boolean isFollowers;
     public static boolean isUserProfile;
     public static void goTo(ActionEvent event, String path, String title) {

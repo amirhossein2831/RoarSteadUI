@@ -1,5 +1,6 @@
 package com.example.roarui;
 
+import com.example.roarui.Component.Alert.Alert;
 import com.example.roarui.Component.Util.Util;
 import com.example.roarui.Models.LoginForm;
 import com.example.roarui.Models.User;
@@ -9,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
@@ -47,7 +49,7 @@ public class LoginController implements Initializable {
         login_Button.setOnAction(actionEvent -> {
             LoginForm loginForm = new LoginForm(userName_TF.getText(), password_TF.getText());
             if(loginForm.validate()){
-               textResponse.setText(login(loginForm, actionEvent));
+                alert(login(loginForm,actionEvent));
                return;
             }
             StringBuilder response = new StringBuilder();
@@ -55,7 +57,7 @@ public class LoginController implements Initializable {
                     loginForm.getViolations()) {
                 response.append(violation.getMessage() + "\n");
             }
-            textResponse.setText(response.toString());
+            alert(response.toString());
         });
     }
 
@@ -77,5 +79,12 @@ public class LoginController implements Initializable {
             return "Sorry there is a problem!";
         }
         return "";
+    }
+    private void alert(String response) {
+        Alert alert = new Alert(javafx.scene.control.Alert.AlertType.ERROR, "Are you sure to UnFollow?",
+                ButtonType.OK);
+        alert.setHeaderText("ERROR");
+        alert.setContentText(response);
+        alert.handleCustomButtonAction();
     }
 }
