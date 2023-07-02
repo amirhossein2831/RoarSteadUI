@@ -14,13 +14,16 @@ import static com.example.roarui.Component.Util.Util.*;
 public class SignUpController implements Initializable {
 
     @FXML
-    private DatePicker birthDay;
+    private TextField password;
+
+    @FXML
+    private Button term_button;
+
+    @FXML
+    private Button privacy_button;
 
     @FXML
     private Button create_button;
-
-    @FXML
-    private TextField dialCode;
 
     @FXML
     private TextField email;
@@ -35,28 +38,28 @@ public class SignUpController implements Initializable {
     private Button login_button;
 
     @FXML
-    private TextField password;
-
-    @FXML
     private TextField phone;
 
     @FXML
     private CheckBox privacy_CB;
 
     @FXML
-    private Button privacy_button;
-
-    @FXML
-    private TextField repartPassword;
-
-    @FXML
-    private Button term_button;
-
-    @FXML
     private TextField userName;
 
     @FXML
     private CheckBox wantNews_CB;
+
+    //TODO
+    @FXML
+    private TextField dialCode;
+
+    //TODO
+    @FXML
+    private DatePicker birthDate;
+
+    //TODO
+    @FXML
+    private TextField textResponse;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
