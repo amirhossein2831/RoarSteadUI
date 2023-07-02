@@ -62,6 +62,9 @@ public class AppController implements Initializable {
     protected Button exploreBut;
 
     @FXML
+    protected Button RoarBut;
+
+    @FXML
     protected Button notificationBut;
 
     @FXML
@@ -89,6 +92,7 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        RoarBut.setOnAction(event -> openGoTo(RoarBut, "roar", "RoarController"));
         initialSevenMainButton();
         initialUpperAnchor(upperAnchor);
         logOutPageAction();

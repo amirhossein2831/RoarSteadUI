@@ -63,6 +63,7 @@ public class UserProfileController extends AppController{
     }
 
     protected void initial(boolean isUserProf) {
+        RoarBut.setOnAction(event -> openGoTo(RoarBut, "roar", "RoarController"));
         initialSevenMainButton();
         initialUpperAnchor(middleAnchor);
         logOutPageAction();

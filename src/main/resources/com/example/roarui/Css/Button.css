@@ -69,6 +69,11 @@
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
+}.uploadFile{
+    -fx-background-image: url('../image/cr.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 .camera{
     -fx-background-image: url('../image/cr.png');
@@ -86,6 +91,11 @@
     -fx-background-color:#F1D017 !important;
     -fx-font-size: 35px;
     -fx-font-family: Mandali;
+    -fx-cursor: hand;
+}
+#roar:hover{
+    -fx-background-color:#F1D017 !important;
+    -fx-font-size: 20px;
     -fx-cursor: hand;
 }
 #homeBut:hover{
