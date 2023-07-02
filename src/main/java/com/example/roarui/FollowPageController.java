@@ -37,6 +37,7 @@ public class FollowPageController extends AppController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        RoarBut.setOnAction(event -> openGoTo(RoarBut, "roar", "RoarController"));
         initialSevenMainButton();
         initialUpperAnchor(upperAnchor);
         clickOn();
