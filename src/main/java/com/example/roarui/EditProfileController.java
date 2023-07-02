@@ -119,7 +119,7 @@ public class EditProfileController extends ProfileController {
     @Override
     protected void setDefaultProfile(ImageView imageView) throws IOException {
         IS_DEFAULT_IMAGE = true;
-        Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/defHeaderProf.png")).openStream());
+        Image imageHolder = new Image(Objects.requireNonNull(App.class.getResource("image/defHeaderProf.png")).openStream());
         headerImage.setImage(imageHolder);
         //TODO need to change RealProfile Image
     }

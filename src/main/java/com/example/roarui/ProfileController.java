@@ -40,7 +40,7 @@ public class ProfileController extends UserProfileController {
     protected void setDefaultProfile(ImageView imageView) throws IOException {
         //TODO need to change on RealProfile
         if (IS_DEFAULT_IMAGE && IS_DEFAULT_IMAGE_SAVE) {
-            Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/defHeaderProf.png")).openStream());
+            Image imageHolder = new Image(Objects.requireNonNull(App.class.getResource("image/defHeaderProf.png")).openStream());
             imageView.setImage(imageHolder);
         }
     }
