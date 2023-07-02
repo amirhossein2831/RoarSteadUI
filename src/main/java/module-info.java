@@ -6,6 +6,7 @@ module com.example.roarui {
     requires java.net.http;
     requires com.google.gson;
     requires java.desktop;
+    requires java.sql;
 //    requires jakarta.persistence;
 
 

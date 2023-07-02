@@ -20,6 +20,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -82,12 +84,8 @@ public class SignUpController implements Initializable {
         create_button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Date birth = null;
-                try {
-                    birth = new SimpleDateFormat("yyyy-MM-dd").parse(birthDate.getText());
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
+                LocalDate selectedDate = birthDate.getValue();
+                Date birth = Date.from(selectedDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
                 UserForm form = new UserForm(userName.getText(), firstName.getText(), lastName.getText(), email.getText(), phone.getText(), password.getText(), dialCode.getText(), birth);
                 if(form.validate()){
                     signUp(form, actionEvent);
@@ -105,10 +103,9 @@ public class SignUpController implements Initializable {
 
     private void signUp(UserForm form, ActionEvent actionEvent) {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(App.LOGIN_URI))
+                .uri(URI.create(App.SIGNUP_URI))
                 .POST(HttpRequest.BodyPublishers.ofString(App.gson().toJson(form)))
                 .build();
-
         try {
             HttpResponse<String> response = App.httpClient().send(request, HttpResponse.BodyHandlers.ofString());
             if(response.statusCode() != 200){
