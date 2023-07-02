@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.net.URI;
@@ -25,6 +26,7 @@ import java.util.ResourceBundle;
 import static com.example.roarui.Component.Util.Util.*;
 
 public class SignUpController implements Initializable {
+
     @FXML
     private TextField password;
 
@@ -67,8 +69,7 @@ public class SignUpController implements Initializable {
 
     //TODO
     @FXML
-    private TextField birthDate;
-
+    private DatePicker birthDate;
     //TODO
     @FXML
     private TextField textResponse;
