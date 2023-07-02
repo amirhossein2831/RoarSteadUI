@@ -58,7 +58,7 @@ public class FollowPageController extends AppController {
 
         for (int i = 0; i < 12; i++) {
             //TODO it can be Follow or Following depend on that you follow or not
-            createPeople("Follow",forYouPane);
+            createUser("Follow",forYouPane);
         }
     }
     @Override
@@ -69,18 +69,18 @@ public class FollowPageController extends AppController {
         followersBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
         followersBut.setEffect(null);
         for (int i = 0; i < 20; i++) {
-            createPeople("Following",followingPane);
+            createUser("Following",followingPane);
         }
     }
 
-    private void createPeople(String buttonText,VBox boxToAdd) throws IOException {
-        AnchorPane pane = new AnchorPane();
-        pane.setStyle("-fx-background-color: black;");
-        //TODO check the person isFollowed already if yse text of button set to Following else set to Follow
+    protected void createUser(String buttonText,VBox boxToAdd) throws IOException {
         Button button = new Button(buttonText);
         initialFollowingFollowersBut(button);
         button.setLayoutX(576);
         button.setLayoutY(13);
+        AnchorPane pane = new AnchorPane();
+        pane.setStyle("-fx-background-color: black;");
+        //TODO check the person isFollowed already if yse text of button set to Following else set to Follow
 
 
         Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/l4.png")).openStream());
@@ -125,21 +125,6 @@ public class FollowPageController extends AppController {
         VBox.setVgrow(anchorPane, javafx.scene.layout.Priority.ALWAYS);
         boxToAdd.getChildren().add(pane);
     }
-
-    private void setActionForProfile(ImageView image, Label profName, Label userName) {
-        ActionEvent imageEvent = new ActionEvent(image, null);
-        image.setCursor(Cursor.HAND);
-        image.setOnMouseClicked(event -> goTo(imageEvent,"userProfile","User Profile"));
-
-        ActionEvent profileEvent = new ActionEvent(profName, null);
-        profName.setCursor(Cursor.HAND);
-        profName.setOnMouseClicked(event -> goTo(profileEvent, "userProfile", "User Profile"));
-
-        ActionEvent userNameAction = new ActionEvent(userName, null);
-        userName.setCursor(Cursor.HAND);
-        userName.setOnMouseClicked(event -> goTo(userNameAction, "userProfile", "User Profile"));
-    }
-
     private void clickOn(){
         if (isFollowers) {
             followersBut.fireEvent(syntheticMouseEvent);

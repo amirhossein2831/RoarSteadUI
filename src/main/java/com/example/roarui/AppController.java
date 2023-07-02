@@ -4,16 +4,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollBar;
+import javafx.scene.control.*;
 import javafx.scene.effect.Bloom;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.InnerShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import static com.example.roarui.Component.Util.Util.*;
 
@@ -194,6 +201,10 @@ public class AppController implements Initializable {
         forYouBut.setEffect(new Bloom(.2));
         followingBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
         followingBut.setEffect(null);
+        //TODO following code should change and get list of userInfo and setTher
+        for (int i = 0; i < 20; i++) {
+            initialForYou(new ArrayList<>(),forYouPane,"heosadjfjasoijf");
+        }
     }
 
     protected void styleFollowingButton() throws IOException {
@@ -201,6 +212,10 @@ public class AppController implements Initializable {
         followingBut.setEffect(new Bloom(.2));
         forYouBut.setStyle("-fx-background-color: black;-fx-opacity: 0.5");
         forYouBut.setEffect(null);
+        //TODO following code should change and get list of userInfo and setTher
+        for (int i = 0; i < 20; i++) {
+            initialForYou(new ArrayList<>(),forYouPane,"heosadjfjasoijf");
+        }
     }
 
     protected void switchVbox(VBox oldVbox, VBox newVbox,AnchorPane pane) {
@@ -309,5 +324,124 @@ public class AppController implements Initializable {
                 strButton.append("Following");
             }
         });
+    }
+
+    private void initialForYou(List<Image> Images,VBox boxToAdd,String roarContext) throws IOException {
+        VBox vBox = new VBox();
+        vBox.getChildren().add(0,createImageRoarCreate(Images));
+        //TODO  upper code if the images.size = 0  should be ignore
+
+        vBox.getChildren().add(createUserInfo(roarContext,null));
+        boxToAdd.getChildren().add(vBox);
+    }
+
+    private AnchorPane createImageRoarCreate(List<Image> images) throws IOException {
+        HBox hbox = new HBox();
+        hbox.setStyle("-fx-background-color: black");
+        hbox.setSpacing(120);
+        ScrollPane scrollPane = new ScrollPane(hbox);
+        AnchorPane.setLeftAnchor(scrollPane, 20.0);
+        AnchorPane.setRightAnchor(scrollPane, 20.0);
+        AnchorPane.setTopAnchor(scrollPane,20.0);
+
+        //TODO should be delete and geet image from arg
+        Image image1 = new Image(Objects.requireNonNull(Login.class.getResource("image/defHeaderProf.png")).openStream());
+        Image image2 = new Image(Objects.requireNonNull(Login.class.getResource("image/defHeaderProf.png")).openStream());
+        Image image3 = new Image(Objects.requireNonNull(Login.class.getResource("image/defHeaderProf.png")).openStream());
+        images.add(image1);
+        images.add(image2);
+        images.add(image3);
+        //TODO ifroar has image
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        InnerShadow innerShadow = new InnerShadow();
+        innerShadow.setColor(Color.BLACK);
+        innerShadow.setRadius(30);
+        scrollPane.setEffect(innerShadow);
+
+        AnchorPane anchorPane = new AnchorPane();
+        hbox.getChildren().add(anchorPane);
+        for (Image i : images) {
+            ImageView imageView = new ImageView(i);
+            imageView.setFitWidth(400);
+            imageView.setFitHeight(200);
+            hbox.getChildren().add(imageView);
+        }
+        AnchorPane pane = new AnchorPane();
+        pane.getChildren().add(scrollPane);
+        return pane;
+    }
+
+    protected AnchorPane createUserInfo(String roarContext,Button button) throws IOException {
+        AnchorPane pane = new AnchorPane();
+        Border border = new Border(
+                        new BorderStroke(
+                        Color.WHITE,
+                        BorderStrokeStyle.SOLID,
+                        null, new BorderWidths(0, 0, 1, 0)));
+        pane.setBorder(border);
+        pane.setStyle("-fx-background-color: black;");
+        //TODO check the person isFollowed already if yse text of button set to Following else set to Follow
+        Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/l4.png")).openStream());
+        ImageView image = new ImageView(imageHolder);
+        image.setFitWidth(60);
+        image.setFitHeight(60);
+        image.setLayoutX(15);
+        image.setLayoutY(5);
+        Circle circle = new Circle(30, 30, 30);
+        image.setClip(circle);
+
+
+        Label profName = new Label("ProfileName");
+        profName.setTextFill(Color.WHITE);
+        Label userName = new Label("userName");
+        Color grayColor = Color.gray(0.5);
+        userName.setTextFill(grayColor);
+
+        //TODO set roar text here
+        TextArea textArea = new TextArea(roarContext);
+        textArea.setEditable(false);
+        textArea.setCursor(Cursor.NONE);
+        textArea.setPrefWidth(600);
+        textArea.setPrefHeight(60);
+        textArea.setStyle("-fx-text-fill: white;" +
+                "    -fx-font-style: italic;" +
+                "    -fx-control-inner-background: black;" +
+                "    -fx-background-color: black;" +
+                "    -fx-border-color: black;" +
+                "    -fx-border-radius: 10px;");
+        textArea.setEffect(new InnerShadow(BlurType.THREE_PASS_BOX,Color.BLACK,10,17,0,0));
+
+        AnchorPane.setTopAnchor(profName, 5.0);
+        AnchorPane.setLeftAnchor(profName, 80.0);
+        AnchorPane.setTopAnchor(userName,27.0);
+        AnchorPane.setLeftAnchor(userName,82.0);
+        AnchorPane.setLeftAnchor(textArea, 72.0);
+        AnchorPane.setTopAnchor(textArea,49.0);
+
+
+        setActionForProfile(image,profName,userName);
+        if (button != null) {
+            pane.getChildren().addAll(button,profName,userName,textArea);
+        }else
+            pane.getChildren().addAll(profName,userName,textArea);
+
+
+        pane.setPrefHeight(70);
+        return pane;
+    }
+
+    protected void setActionForProfile(ImageView image, Label profName, Label userName) {
+        ActionEvent imageEvent = new ActionEvent(image, null);
+        image.setCursor(Cursor.HAND);
+        image.setOnMouseClicked(event -> goTo(imageEvent,"userProfile","User Profile"));
+
+        ActionEvent profileEvent = new ActionEvent(profName, null);
+        profName.setCursor(Cursor.HAND);
+        profName.setOnMouseClicked(event -> goTo(profileEvent, "userProfile", "User Profile"));
+
+        ActionEvent userNameAction = new ActionEvent(userName, null);
+        userName.setCursor(Cursor.HAND);
+        userName.setOnMouseClicked(event -> goTo(userNameAction, "userProfile", "User Profile"));
     }
 }
