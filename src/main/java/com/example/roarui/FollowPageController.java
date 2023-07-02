@@ -83,7 +83,7 @@ public class FollowPageController extends AppController {
         //TODO check the person isFollowed already if yse text of button set to Following else set to Follow
 
 
-        Image imageHolder = new Image(Objects.requireNonNull(Login.class.getResource("image/l4.png")).openStream());
+        Image imageHolder = new Image(Objects.requireNonNull(App.class.getResource("image/l4.png")).openStream());
         ImageView image = new ImageView(imageHolder);
         image.setFitWidth(60);
         image.setFitHeight(60);

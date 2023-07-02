@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Point3D?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Bloom?>
-<?import javafx.scene.effect.SepiaTone?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox maxHeight="600.0" maxWidth="450.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.roarui.LoginController">
+<VBox maxHeight="600.0" maxWidth="450.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.roarui.LoginController">
     <children>
         <AnchorPane prefHeight="145.0" prefWidth="600.0" style="-fx-background-color: Black;">
             <opaqueInsets>
@@ -48,7 +42,8 @@
                         <Font name="Mandali" size="30.0" />
                     </font>
                 </Label>
-                <Button fx:id="login_Button" layoutX="201.0" layoutY="160.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="197.0" style="-fx-background-radius: 15px; -fx-background-color: FFB705;" stylesheets="@../Css/Button.css" text="login" AnchorPane.leftAnchor="201.0" AnchorPane.rightAnchor="202.0">
+                <Text fx:id="textResponse" fill="RED" layoutX="262.0" layoutY="150.0"/>
+                <Button fx:id="login_Button" defaultButton="true" layoutX="201.0" layoutY="163.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="197.0" style="-fx-background-radius: 15px; -fx-background-color: FFB705;" stylesheets="@../Css/Button.css" text="login" AnchorPane.leftAnchor="201.0" AnchorPane.rightAnchor="202.0">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -77,7 +72,7 @@
                   <Font name="Mandali" size="30.0" />
                </font>
             </Label>
-            <Button fx:id="exitBut" layoutX="202.0" layoutY="209.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="197.0" style="-fx-background-radius: 15px; -fx-background-color: FFB705;" stylesheets="@../Css/Button.css" text="Exit">
+            <Button fx:id="exitBut" cancelButton="true" layoutX="202.0" layoutY="209.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="197.0" style="-fx-background-radius: 15px; -fx-background-color: FFB705;" stylesheets="@../Css/Button.css" text="Exit">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

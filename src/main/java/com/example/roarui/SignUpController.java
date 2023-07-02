@@ -1,12 +1,26 @@
 package com.example.roarui;
 
+import com.example.roarui.Models.LoginForm;
+import com.example.roarui.Models.User;
+import com.example.roarui.Models.UserForm;
+import com.google.gson.JsonObject;
+import jakarta.validation.ConstraintViolation;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+
+import java.net.URI;
 import java.net.URL;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import static com.example.roarui.Component.Util.Util.*;
@@ -56,7 +70,6 @@ public class SignUpController implements Initializable {
     //TODO
     @FXML
     private DatePicker birthDate;
-
     //TODO
     @FXML
     private TextField textResponse;
@@ -66,5 +79,46 @@ public class SignUpController implements Initializable {
         login_button.setOnAction(event -> goTo(event, "login", "Login"));
         term_button.setOnAction(event -> openLink(TERM_LINK));
         privacy_button.setOnAction(event -> openLink(PRIVACY_LINK));
+        create_button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Date birth = null;
+                try {
+                    birth = new SimpleDateFormat("yyyy-MM-dd").parse(birthDate.getText());
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                UserForm form = new UserForm(userName.getText(), firstName.getText(), lastName.getText(), email.getText(), phone.getText(), password.getText(), dialCode.getText(), birth);
+                if(form.validate()){
+                    signUp(form, actionEvent);
+                    return;
+                }
+                StringBuilder response = new StringBuilder();
+                for (ConstraintViolation<UserForm> violation :
+                        form.getViolations()) {
+                    response.append(violation.getMessage() + "\n");
+                }
+                textResponse.setText(response.toString());
+            }
+        });
+    }
+
+    private void signUp(UserForm form, ActionEvent actionEvent) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(App.LOGIN_URI))
+                .POST(HttpRequest.BodyPublishers.ofString(App.gson().toJson(form)))
+                .build();
+
+        try {
+            HttpResponse<String> response = App.httpClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode() != 200){
+                textResponse.setText(App.gson().fromJson(response.body(), JsonObject.class).get("message").getAsString());
+                return;
+            }
+            textResponse.setText(LoginController.login(new LoginForm(form.getUsername(), form.getPassword()), actionEvent));
+        } catch (Exception e) {
+            textResponse.setText("Sorry there is a problem!");
+            throw new RuntimeException(e);
+        }
     }
 }
