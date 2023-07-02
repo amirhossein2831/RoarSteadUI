@@ -1,20 +1,27 @@
 package com.example.roarui;
 
+import com.example.roarui.Component.Alert.Alert;
 import com.example.roarui.Component.Validation.ExcludeStrategy;
 import com.example.roarui.Models.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.http.HttpClient;
 import com.google.gson.*;
 
 
 public class App extends Application {
-
     public static final String LOGIN_URI = "http://localhost:8000/user/get-token";
     public static final String APP_NAME = "Roarstead";
+    public static final String SIGNUP_URI = "http://localhost:8000/user/sign-up";
 
     private static HttpClient httpClient;
     private static Gson gson;
