@@ -1,9 +1,16 @@
 package com.example.roarui;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -33,9 +40,13 @@ public class RoarController implements Initializable {
     private Button uploadFile;
 
     @FXML
+    private TextArea roarTextArea;
+
+    @FXML
     private Button roar;
 
     private List<Image> images = new ArrayList<>();
+
 
     private boolean backScreenDisabled;
 
@@ -44,7 +55,7 @@ public class RoarController implements Initializable {
         createProfileCircle();
         closeBut.setOnAction(event -> closeFrontScreen());
         createImage();
-        roar.setOnAction(event -> );
+        roar.setOnAction(event -> System.out.println("he"));
     }
 
     public void setBackScreenDisabled(boolean disabled) {
@@ -73,5 +84,9 @@ public class RoarController implements Initializable {
         anchorPane.setPrefHeight(200);
         anchorPane.setPrefWidth(1);
         hbox.getChildren().add(anchorPane);
+    }
+
+    private void confirmRoar() {
+        CONFIRM_ROAR.handleCustomButtonAction();
     }
 }

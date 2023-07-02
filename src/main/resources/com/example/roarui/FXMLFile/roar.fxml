@@ -19,14 +19,6 @@
          <children>
             <AnchorPane prefHeight="194.0" prefWidth="600.0" style="-fx-background-color: black;">
                <children>
-                  <TextArea layoutX="70.0" layoutY="50.0" prefHeight="153.0" prefWidth="521.0" promptText="What's Up Man?..." styleClass="textArea" stylesheets="@../Css/TextArea.css">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <effect>
-                        <InnerShadow choke="0.67" />
-                     </effect>
-                  </TextArea>
                   <Button fx:id="closeBut" layoutX="558.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: black;" text="x" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
@@ -35,6 +27,14 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <TextArea fx:id="roarTextArea" layoutX="70.0" layoutY="50.0" prefHeight="153.0" prefWidth="521.0" promptText="What's Up Man?..." styleClass="textArea" stylesheets="@../Css/TextArea.css">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow choke="0.67" />
+                     </effect>
+                  </TextArea>
                   <ImageView fx:id="profView" fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/l4.png" />
